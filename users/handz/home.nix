@@ -42,5 +42,6 @@
     eza
     bat
     yt-dlp
+    qbittorrent
   ];
 }
