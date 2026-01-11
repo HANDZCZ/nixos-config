@@ -1,0 +1,14 @@
+xkb_symbols "cz-winlike" {
+  include "cz(basic)"
+  name[Group1] = "Czech (WinLike)";
+
+  key <TLDE> {[	semicolon,	dead_abovering,	grave,	asciitilde]};
+  key <AE01> {[	plus,	1,	asciitilde]};
+  key <AE02> {[	ecaron,	2,	dead_caron]};
+  key <AE03> {[	scaron,	3,	asciicircum]};
+  key <AE04> {[	ccaron,	4,	dead_breve]};
+  key <AE05> {[	rcaron,	5,	dead_abovering]};
+  key <AE06> {[	zcaron,	6,	dead_ogonek]};
+  key <AE07> {[	yacute,	7,	dead_grave]};
+
+};

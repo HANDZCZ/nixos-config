@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../users/handz
+    ../../keymaps
   ];
 
   boot.loader.grub.enable = true;
@@ -51,7 +52,7 @@
 
   services.xserver = {
     enable = false;
-    xkb.layout = "cz";
+    xkb.layout = "cz-winlike";
     videoDrivers = [ "nvidia" ];
   };
 
