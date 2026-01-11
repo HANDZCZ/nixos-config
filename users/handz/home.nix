@@ -10,6 +10,7 @@
     ./bash.nix
     ./fonts.nix
     ./cursor_icon_themes.nix
+    ./starship.nix
   ];
 
   home.username = "handz";
