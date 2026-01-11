@@ -4,6 +4,7 @@
   imports = [
     ./noctalia.nix
     ./nixcord.nix
+    ./git.nix
     ./bash.nix
   ];
 
