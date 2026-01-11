@@ -8,6 +8,7 @@
     ./nixcord.nix
     ./git.nix
     ./bash.nix
+    ./fonts.nix
   ];
 
   home.username = "handz";
