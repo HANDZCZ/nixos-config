@@ -3,6 +3,7 @@
 {
   imports = [
     ../../modules/home-manager/prefer-dark.nix
+    ./scripts
     ./noctalia.nix
     ./nixcord.nix
     ./git.nix
