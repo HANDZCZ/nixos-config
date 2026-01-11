@@ -27,4 +27,6 @@
       };
     };
   };
+
+  programs.alacritty.settings.general.import = lib.mkIf config.programs.alacritty.enable [ "themes/noctalia.toml" ];
 }
