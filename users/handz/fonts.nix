@@ -1,6 +1,22 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
-{
+let
+  fonts = {
+    serif = [
+      "DejaVu Serif"
+    ];
+    sansSerif = [
+      "DejaVu Sans"
+    ];
+    monospace = [
+      "JetBrainsMono Nerd Font"
+    ];
+    emoji = [
+      "Noto Color Emoji"
+    ];
+    size = 10;
+  };
+in {
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     dejavu_fonts
@@ -10,18 +26,10 @@
     fontconfig = {
       enable = true;
       defaultFonts = {
-        serif = [
-          "DejaVu Serif"
-        ];
-        sansSerif = [
-          "DejaVu Sans"
-        ];
-        monospace = [
-          "JetBrainsMono Nerd Font"
-        ];
-        emoji = [
-          "Noto Color Emoji"
-        ];
+        serif = fonts.serif;
+        sansSerif = fonts.sansSerif;
+        monospace = fonts.monospace;
+        emoji = fonts.emoji;
       };
     };
   };
@@ -29,18 +37,21 @@
   gtk = {
     enable = true;
     font = {
-      name = "DejaVu Sans";
-      size = 10;
+      name = builtins.elemAt fonts.sansSerif 0;
+      size = fonts.size;
     };
   };
 
-  qt = {
-    enable = true;
-    qt6ctSettings = {
-      Fonts = {
-        fixed = "\"JetBrainsMono Nerd Font,10\"";
-        general = "\"DejaVu Sans,10\"";
+  qt =
+    let
+      settings = [ "qt6ctSettings" "qt5ctSettings" ];
+      qtConfig = {
+        Fonts = {
+          fixed = "\"${builtins.elemAt fonts.monospace 0},${builtins.toString fonts.size}\"";
+          general = "\"${builtins.elemAt fonts.sansSerif 0},${builtins.toString fonts.size}\"";
+        };
       };
-    };
-  };
+    in {
+      enable = true;
+    } // lib.genAttrs settings (_: qtConfig);
 }
