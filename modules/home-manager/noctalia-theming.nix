@@ -11,6 +11,8 @@
     enable = true;
     theme = {
       name = "adw-gtk3-dark";
+      # disable GTK4 writing gtk.css
+      package = null;
     };
   };
 
