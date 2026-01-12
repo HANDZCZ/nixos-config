@@ -16,19 +16,20 @@
     };
   };
 
-  qt = {
-    enable = true;
-    platformTheme.name = "qt6ct";
-    style.name = lib.mkForce null;
-    qt6ctSettings = {
-      Appearance = {
-        color_scheme_path = "${config.home.homeDirectory}/.config/qt6ct/colors/noctalia.conf";
-	custom_palette = true;
-        style = "Fusion";
-        standar_dialogs = "default";
+  qt =
+    let
+      settingsVersions = [ "5" "6" ];
+      qtConfigFn = version: {
+        Appearance = {
+          color_scheme_path = "${config.home.homeDirectory}/.config/qt${version}ct/colors/noctalia.conf";
+          custom_palette = true;
+        };
       };
-    };
-  };
+    in {
+      enable = true;
+      platformTheme.name = "qtct";
+      style.name = lib.mkForce null;
+    } // lib.genAttrs' settingsVersions (version: lib.nameValuePair ("qt" + version + "ctSettings") (qtConfigFn version));
 
   programs.alacritty.settings.general.import = lib.mkIf config.programs.alacritty.enable [ "themes/noctalia.toml" ];
 }
