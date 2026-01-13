@@ -35,6 +35,20 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
+  fileSystems."/media/drive-d" =
+    { device = "/dev/disk/by-uuid/D0C4C576C4C55F7A";
+      fsType = "ntfs-3g";
+      # https://docs.kernel.org/filesystems/ntfs3.html
+      # https://linux.die.net/man/8/ntfs-3g
+      options = [
+        "rw"
+        #"windows_names" # Prevent filesnames not allowed by Windows
+        "discard" # Enable support of the TRIM
+        "nofail" # Prevent system not booting if mounting fails
+        "inherit" # Inherit perms
+      ];
+    };
+
   swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
