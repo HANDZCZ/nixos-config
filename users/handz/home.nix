@@ -3,6 +3,7 @@
 {
   imports = [
     ../../modules/home-manager/prefer-dark.nix
+    ../../modules/home-manager/polkit-gnome.nix
     ./scripts
     ./noctalia.nix
     ./nixcord.nix
@@ -12,7 +13,6 @@
     ./cursor_icon_themes.nix
     ./alacritty.nix
     ./starship.nix
-    ./polkit-gnome.nix
   ];
 
   home.username = "handz";
