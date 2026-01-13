@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, user, ... }:
 
 {
   imports = [
@@ -15,8 +15,8 @@
     ./starship.nix
   ];
 
-  home.username = "handz";
-  home.homeDirectory = "/home/handz";
+  home.username = "${user}";
+  home.homeDirectory = "/home/${user}";
   home.stateVersion = "25.11";
 
   programs.neovim = {

@@ -1,6 +1,8 @@
 { pkgs, inputs, ... }:
 
-{
+let
+  user = "handz";
+in {
   imports = [
     inputs.home-manager.nixosModules.home-manager
     ../../modules/niri.nix
@@ -8,7 +10,7 @@
     ../../modules/wine-ntsync.nix
   ];
 
-  users.users.handz = {
+  users.users.${user} = {
     isNormalUser = true;
     initialPassword = "secure_tm";
     extraGroups = [ "wheel" ];
@@ -24,10 +26,10 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.handz = import ./home.nix;
+    users.${user} = import ./home.nix;
     backupFileExtension = "backup";
     extraSpecialArgs = {
-      inherit inputs;
+      inherit inputs user;
     };
   };
   environment.sessionVariables = {
