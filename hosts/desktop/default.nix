@@ -14,6 +14,9 @@
   ];
 
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
+  boot.kernelParams = [
+    "video=DP-2:2560x1440@180"
+  ];
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "nodev";
