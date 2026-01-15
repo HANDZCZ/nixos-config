@@ -9,7 +9,7 @@
       line_break.disabled = true;
       format = lib.concatStrings [
         "[┌─«](bold green) "
-	"$all"
+        "$all"
         "\n[└─»](bold green) "
       ];
     };
