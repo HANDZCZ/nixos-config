@@ -18,15 +18,19 @@
     };
     gamescope = {
       enable = true;
-      capSysNice = true;
-      args = [
-        "--rt"
-        "--expose-wayland"
-      ];
+      # gamescope in steam gives error:
+      # failed to inherit capabilities: Operation not permitted
+      # workaroud is to use ananicy
+      capSysNice = false;
     };
     gamemode = {
       enable = true;
       enableRenice = true;
     };
+  };
+  services.ananicy = {
+    enable = true;
+    package = pkgs-unstable.ananicy-cpp;
+    rulesProvider = pkgs-unstable.ananicy-rules-cachyos;
   };
 }
