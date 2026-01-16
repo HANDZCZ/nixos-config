@@ -12,6 +12,7 @@
     theme = {
       name = "adw-gtk3-dark";
       # disable GTK4 writing gtk.css
+      # this is needed because noctalia will be creating gtk.css for theming
       package = null;
     };
   };

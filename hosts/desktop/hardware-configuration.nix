@@ -42,6 +42,7 @@
       # https://linux.die.net/man/8/ntfs-3g
       options = [
         "rw"
+        # if enabled proton can't be used, because it can't create files with invalid names that it relies on
         #"windows_names" # Prevent filesnames not allowed by Windows
         "discard" # Enable support of the TRIM
         "nofail" # Prevent system not booting if mounting fails
