@@ -67,6 +67,9 @@
     nemo-with-extensions
     file-roller
     unrar
+    unzip
+    cabextract
+    p7zip
 
     # for testing steam, gamescope, ...
     vulkan-tools
@@ -78,6 +81,7 @@
 
     # gaming
     lutris
+    heroic
     protonplus
   ]
   # htop for nvidia cards
