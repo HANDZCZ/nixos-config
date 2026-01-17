@@ -37,16 +37,20 @@
 
   fileSystems."/media/drive-d" =
     { device = "/dev/disk/by-uuid/D0C4C576C4C55F7A";
-      fsType = "ntfs-3g";
+      fsType = "ntfs3";
       # https://docs.kernel.org/filesystems/ntfs3.html
-      # https://linux.die.net/man/8/ntfs-3g
+      # https://github.com/ValveSoftware/Proton/wiki/Using-a-NTFS-disk-with-Linux-and-Windows#editing-fstab
       options = [
         "rw"
         # if enabled proton can't be used, because it can't create files with invalid names that it relies on
         #"windows_names" # Prevent filesnames not allowed by Windows
         "discard" # Enable support of the TRIM
         "nofail" # Prevent system not booting if mounting fails
-        "inherit" # Inherit perms
+        "uid=1000"
+        "gid=1000"
+        "user"
+        "exec"
+        "umask=000"
       ];
     };
 
