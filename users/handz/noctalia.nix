@@ -23,6 +23,10 @@
           enabled = true;
           sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
         };
+        privacy-indicator = {
+          enabled = true;
+          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+        };
       };
       version = 1;
     };
@@ -39,6 +43,11 @@
         copyToClipboard = true;
         audioSource = "both";
         videoSource = "portal";
+      };
+      privacy-indicator = {
+        hideInactive = false;
+        iconSpacing = 4;
+        removeMargins = false;
       };
     };
 
@@ -122,6 +131,9 @@
               drawerEnabled= true;
               hidePassive = false;
               pinned = [];
+            }
+            {
+              id = "plugin:privacy-indicator";
             }
             {
               id = "plugin:screen-recorder";
