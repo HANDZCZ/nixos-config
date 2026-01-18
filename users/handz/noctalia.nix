@@ -226,7 +226,7 @@
       location = {
         #name = "";
         analogClockInCalendar = true;
-        firstDayOfWeek = -1;
+        firstDayOfWeek = 1;
         hideWeatherCityName = true;
         hideWeatherTimezone = false;
         showWeekNumberInCalendar = true;
