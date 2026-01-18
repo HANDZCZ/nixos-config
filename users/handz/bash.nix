@@ -8,7 +8,8 @@ in {
     historyControl = [ "ignoreboth" ];
     shellAliases = {
       # NixOS
-      nix-rbs = "sudo nixos-rebuild switch --flake ~/.config/nixos#nixos-desktop";
+      nix-rbs = "sudo nixos-rebuild switch --flake ${xdg.configHome}/nixos#nixos-desktop";
+      nix-rbb = "sudo nixos-rebuild boot --flake ${xdg.configHome}/nixos#nixos-desktop";
 
       # Basic
       ll = "${pkgs.eza}/bin/eza -lag --icons -s type";
