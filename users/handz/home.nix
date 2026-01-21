@@ -90,8 +90,11 @@
     unzip
     cabextract
     p7zip
+    ncdu
     podman-compose
     podman-desktop
+    file
+    gnumake
 
     # for testing steam, gamescope, ...
     vulkan-tools
