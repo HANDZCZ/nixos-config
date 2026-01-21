@@ -37,6 +37,12 @@
         betterSettings.enable = true;
         betterUploadButton.enable = true;
         biggerStreamPreview.enable = true;
+        callTimer = {
+          enable = true;
+          allCallTimers = true;
+          showSeconds = true;
+          showWithoutHover = true;
+        };
         ClearURLs.enable = true;
         consoleJanitor.enable = true;
         copyEmojiMarkdown.enable = true;
@@ -74,6 +80,10 @@
           showMillis = true;
         };
         messageLinkEmbeds.enable = true;
+        moreQuickReactions = {
+          enable = true;
+          reactionCount = 10;
+        };
         MutualGroupDMs.enable = true;
         noDevtoolsWarning.enable = true;
         noF1.enable = true;
@@ -146,7 +156,6 @@
         whoReacted.enable = true;
         youtubeAdblock.enable = true;
         # Equicord
-        allCallTimers.enable = true;
         betterAudioPlayer.enable = true;
         characterCounter.enable = true;
         gifCollections.enable = true;
@@ -158,10 +167,6 @@
     extraConfig = {
       plugins = {
         # Vencord
-        MoreQuickReactions = {
-          enabled = true;
-          reactionCount = 10;
-        };
         OpenInApp = {
           enabled = true;
           epic = false;
