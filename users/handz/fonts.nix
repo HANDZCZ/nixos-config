@@ -20,6 +20,8 @@ in {
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     dejavu_fonts
+    # chromium browsers need this font for Chinese, Japanese, Korean and more
+    noto-fonts-cjk-sans
   ];
 
   fonts = {
