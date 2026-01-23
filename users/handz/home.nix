@@ -73,25 +73,27 @@
   };
 
   home.packages = with pkgs; [
+    # misc
     pkgs-unstable.signal-desktop
+    yt-dlp
+    qbittorrent
 
+    # basic utils
     btop
     htop
     fastfetch
-    brave
     eza
     bat
-    yt-dlp
-    qbittorrent
+    file
+    ncdu
+    gnumake
+
+    # browser
+    brave
+
+    # file browser
     nemo-with-extensions
     file-roller
-    unrar
-    unzip
-    cabextract
-    p7zip
-    ncdu
-    file
-    gnumake
 
     # for testing steam, gamescope, ...
     vulkan-tools
@@ -105,6 +107,11 @@
     lutris
     heroic
     protonplus
+    # utils for winetricks
+    unrar
+    unzip
+    cabextract
+    p7zip
   ]
   # htop for nvidia cards
   ++ lib.optionals osConfig.hardware.nvidia.enabled [ pkgs.nvtopPackages.nvidia ];
