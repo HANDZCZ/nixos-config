@@ -79,6 +79,10 @@
     yt-dlp
     qbittorrent
 
+    # development
+    rustup
+    gcc
+
     # basic utils
     btop
     htop
