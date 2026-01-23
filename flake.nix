@@ -73,11 +73,20 @@
       nixos-desktop =
         let
           system = "x86_64-linux";
+          pkgs = import nixpkgs {
+            config.allowUnfree = true;
+            overlays = [
+              inputs.nix-cachyos-kernel.overlays.pinned
+              inputs.nix-gaming.overlays.default
+            ];
+            inherit system;
+          };
           pkgs-unstable = import nixpkgs-unstable {
+            config.allowUnfree = true;
             inherit system;
           };
         in nixpkgs.lib.nixosSystem {
-          inherit system;
+          inherit pkgs;
           specialArgs = { inherit inputs pkgs-unstable; };
           modules = [ ./hosts/desktop ];
         };

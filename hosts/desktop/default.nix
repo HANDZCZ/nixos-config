@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, pkgs, ... }:
 
 let
   xsession-wrapper = pkgs.runCommand "xsession-wrapper-fixed" {
@@ -13,11 +13,6 @@ in {
     ../../users/handz
     ../../keymaps
     ../../modules/pipewire-low-latency.nix
-  ];
-
-  nixpkgs.overlays = [
-    inputs.nix-cachyos-kernel.overlays.pinned
-    inputs.nix-gaming.overlays.default
   ];
 
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
@@ -82,8 +77,6 @@ in {
     enable = true;
     pulse.enable = true;
   };
-
-  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     neovim
