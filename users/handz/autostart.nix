@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-unstable, ... }:
+{ config, osConfig, lib, pkgs, pkgs-unstable, ... }:
 
 let
   nixcord = config.programs.nixcord;
@@ -11,7 +11,11 @@ let
       destination = "/";
     } + "/${name}-autostart.desktop";
   mkCondEntry = condition: name: command: lib.mkIf condition (mkEntry name command);
-  isInPackages = package: lib.elem pkgs.${package} config.home.packages || lib.elem pkgs-unstable.${package} config.home.packages;
+  isInPackages = package:
+    lib.elem pkgs.${package} config.home.packages
+    || lib.elem pkgs-unstable.${package} config.home.packages
+    || lib.elem pkgs.${package} osConfig.environment.systemPackages
+    || lib.elem pkgs-unstable.${package} osConfig.environment.systemPackages;
   mkInPkgsEntry = package: name: command: mkCondEntry (isInPackages package) name command;
 in {
   xdg.autostart = {
