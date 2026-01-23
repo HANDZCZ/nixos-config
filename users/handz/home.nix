@@ -16,6 +16,7 @@
     ./starship.nix
     ./nixvim.nix
     ./vscode.nix
+    ./containerization.nix
   ];
 
   home.username = "${user}";
@@ -26,10 +27,6 @@
     #EDITOR = "nvim";
     BROWSER = "brave";
     TERMINAL = "alacritty";
-  };
-
-  services.podman = {
-    enable = true;
   };
 
   programs.ranger = {
@@ -93,8 +90,6 @@
     cabextract
     p7zip
     ncdu
-    podman-compose
-    podman-desktop
     file
     gnumake
 
