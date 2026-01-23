@@ -53,6 +53,11 @@
         flake-parts.follows = "flake-parts";
       };
     };
+
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
@@ -78,6 +83,7 @@
             overlays = [
               inputs.nix-cachyos-kernel.overlays.pinned
               inputs.nix-gaming.overlays.default
+              inputs.nix-vscode-extensions.overlays.default
             ];
             inherit system;
           };

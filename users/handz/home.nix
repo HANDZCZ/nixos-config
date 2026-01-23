@@ -15,6 +15,7 @@
     ./alacritty.nix
     ./starship.nix
     ./nixvim.nix
+    ./vscode.nix
   ];
 
   home.username = "${user}";
