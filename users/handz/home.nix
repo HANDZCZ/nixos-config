@@ -24,9 +24,7 @@
   home.stateVersion = "25.11";
 
   home.sessionVariables = {
-    #EDITOR = "nvim";
     BROWSER = "brave";
-    TERMINAL = "alacritty";
     NIXOS_OZONE_WL = "1";
   };
 

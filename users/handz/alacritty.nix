@@ -1,6 +1,19 @@
 { ... }:
 
 {
+  home.sessionVariables = {
+    TERMINAL = "alacritty";
+  };
+
+  xdg.terminal-exec = {
+    enable = true;
+    settings = {
+      default = [
+        "kitty.desktop"
+      ];
+    };
+  };
+
   programs.alacritty = {
     enable = true;
     settings = {
