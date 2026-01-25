@@ -14,7 +14,7 @@ in {
   users.users.${user} = {
     isNormalUser = true;
     initialPassword = "secure_tm";
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "networkmanager" ];
     packages = with pkgs; [];
   };
 
