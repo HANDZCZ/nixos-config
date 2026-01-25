@@ -37,12 +37,6 @@
         betterSettings.enable = true;
         betterUploadButton.enable = true;
         biggerStreamPreview.enable = true;
-        callTimer = {
-          enable = true;
-          allCallTimers = true;
-          showSeconds = true;
-          showWithoutHover = true;
-        };
         ClearURLs.enable = true;
         consoleJanitor.enable = true;
         copyEmojiMarkdown.enable = true;
@@ -116,7 +110,7 @@
         };
         shikiCodeblocks = {
           enable = true;
-          theme = "https://raw.githubusercontent.com/shikijs/textmate-grammars-themes/bc5436518111d87ea58eb56d97b3f9bec30e6b83/packages/tm-themes/themes/one-dark-pro.json";
+          customTheme = "https://raw.githubusercontent.com/shikijs/textmate-grammars-themes/master/packages/tm-themes/themes/one-dark-pro.json";
         };
         showConnections.enable = true;
         showHiddenChannels.enable = true;
@@ -156,6 +150,11 @@
         whoReacted.enable = true;
         youtubeAdblock.enable = true;
         # Equicord
+        allCallTimers = {
+          enable = true;
+          showSeconds = true;
+          showWithoutHover = true;
+        };
         betterAudioPlayer.enable = true;
         characterCounter.enable = true;
         gifCollections.enable = true;
