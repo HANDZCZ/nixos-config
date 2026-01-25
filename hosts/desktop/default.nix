@@ -78,6 +78,7 @@ in {
     pulse.enable = true;
   };
 
+  services.openssh.enable = true;
   environment.systemPackages = with pkgs; [
     neovim
     wget
