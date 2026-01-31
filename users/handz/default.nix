@@ -33,7 +33,4 @@ in {
       inherit inputs user pkgs-unstable;
     };
   };
-  environment.sessionVariables = {
-    XFT_DPI = "96";
-  };
 }
