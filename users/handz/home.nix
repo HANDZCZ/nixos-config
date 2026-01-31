@@ -17,6 +17,7 @@
     ./nixvim.nix
     ./vscode.nix
     ./containerization.nix
+    ./lazygit.nix
   ];
 
   home.username = "${user}";
@@ -45,13 +46,6 @@
         };
       }
     ];
-  };
-
-  programs.lazygit = {
-    enable = true;
-    settings = {
-      git.commit.autoWrapCommitMessage = false;
-    };
   };
 
   programs.obs-studio = {
