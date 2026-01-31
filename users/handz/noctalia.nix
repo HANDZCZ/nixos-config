@@ -31,6 +31,10 @@
           enabled = true;
           sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
         };
+        simple-notes = {
+          enabled = true;
+          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+        };
       };
       version = 1;
     };
@@ -135,6 +139,9 @@
               drawerEnabled = false;
               hidePassive = false;
               pinned = [];
+            }
+            {
+              id = "plugin:simple-notes";
             }
             {
               id = "plugin:privacy-indicator";
