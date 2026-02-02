@@ -92,6 +92,9 @@
     nemo-with-extensions
     file-roller
 
+    # media player
+    vlc
+
     # for testing steam, gamescope, ...
     vulkan-tools
 
