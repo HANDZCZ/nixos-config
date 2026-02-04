@@ -70,7 +70,10 @@
       xdg-desktop-portal-gnome
     ];
     config = {
-      common.default = [ "gtk" "gnome" ];
+      common = {
+        default = [ "gtk" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+      };
     };
   };
 
