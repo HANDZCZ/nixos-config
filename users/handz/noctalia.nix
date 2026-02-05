@@ -106,9 +106,11 @@
               compactMode = false;
               showCpuTemp = true;
               showCpuUsage = true;
-              showLoadAverage = true;
+              showLoadAverage = false;
               showGpuTemp = true;
               showDiskUsage = true;
+              showDiskUsageAsPercent = true;
+              showDiskAvailable = false;
               diskPath = "/";
               showMemoryUsage = true;
               showMemoryAsPercent = false;
@@ -150,11 +152,12 @@
               id = "plugin:screen-recorder";
             }
             {
-              id = "KeepAwake";
+              id = "Microphone";
+              displayMode = "alwaysHide";
             }
             {
               id = "Volume";
-              displayMode = "alwaysShow";
+              displayMode = "alwaysHide";
             }
             {
               id = "NotificationHistory";
@@ -236,6 +239,9 @@
         enabledTypes = [ 0 1 2 3 ];
         location = "top_right";
         overlayLayer = true;
+      };
+      sessionMenu = {
+        largeButtonsStyle = false;
       };
       audio = {
         cavaFrameRate = 10;
