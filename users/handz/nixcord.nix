@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs-unstable, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -8,8 +8,13 @@
   programs.nixcord = {
     enable = true;
     discord = {
+      enable = false;
       vencord.enable = false;
       equicord.enable = true;
+    };
+    equibop = {
+      enable = true;
+      package = pkgs-unstable.equibop;
     };
     config = {
       /*themeLinks = [
