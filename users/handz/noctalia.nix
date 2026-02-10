@@ -225,7 +225,7 @@
         sounds = {
           enabled = true;
           volume = 0.5;
-          excludedApps = "discord,firefox,chrome,chromium,edge";
+          excludedApps = "discord,firefox,chrome,chromium,edge,mailspring,equibop";
           #separateSounds = true;
           #lowSoundFile = "";
           #normalSoundFile = "";
