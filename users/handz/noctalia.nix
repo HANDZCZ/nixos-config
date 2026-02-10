@@ -65,6 +65,8 @@
         animationSpeed = 2.5;
         #showScreenCorners = true;
         forceBlackScreenCorners = true;
+        # lock screen clock style
+        clockStyle = "analog";
       };
       colorSchemes = {
         darkMode = true;
@@ -210,6 +212,9 @@
         terminalCommand = "alacritty -e";
         viewMode = "list";
         useApp2Unit = true;
+        # show above fullscreen
+        overviewLayer = true;
+        density = "comfortable";
       };
       notifications = {
         enabled = true;
