@@ -83,7 +83,11 @@ in {
           showFullUrl = true;
         };
         imageLink.enable = true;
-        imageZoom.enable = true;
+        imageZoom = {
+          enable = true;
+          size = 1000.0;
+          zoom = 4.5;
+        };
         implicitRelationships.enable = true;
         memberCount.enable = true;
         mentionAvatars.enable = true;
