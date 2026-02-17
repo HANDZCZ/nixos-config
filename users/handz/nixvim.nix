@@ -7,16 +7,15 @@ in {
     inputs.nixvim.homeModules.nixvim
   ];
 
-  home.packages = with pkgs; [
-    #pandoc
-    python3Minimal
-    ranger
-    python313Packages.pynvim
-    ueberzugpp
-  ];
-
   programs.nixvim = {
     enable = true;
+    extraPackages = with pkgs; [
+      ranger
+      ueberzugpp
+    ];
+    extraPython3Packages = p: with p; [
+    ];
+
     defaultEditor = true;
     colorschemes.onedark = {
       enable = true;
