@@ -1,17 +1,13 @@
 { config, lib, pkgs, inputs, ... }:
 
 {
-  home.packages = with pkgs; [
-    nwg-look
-    kdePackages.qt6ct
-  ];
 
   gtk =
     let
       settingsVersions = [ "3" "4" ];
       gtkConfigFn = version: {
         extraCss = ''
-          @import url("${config.home.homeDirectory}/.config/gtk-${version}.0/noctalia.css");
+          @import url("${config.xdg.configHome}/gtk-${version}.0/noctalia.css");
         '';
       };
     in {
@@ -27,7 +23,7 @@
       settingsVersions = [ "5" "6" ];
       qtConfigFn = version: {
         Appearance = {
-          color_scheme_path = "${config.home.homeDirectory}/.config/qt${version}ct/colors/noctalia.conf";
+          color_scheme_path = "${config.xdg.configHome}/qt${version}ct/colors/noctalia.conf";
           custom_palette = true;
         };
       };
@@ -37,5 +33,10 @@
       style.name = lib.mkForce null;
     } // lib.genAttrs' settingsVersions (version: lib.nameValuePair ("qt" + version + "ctSettings") (qtConfigFn version));
 
-  programs.alacritty.settings.general.import = lib.mkIf config.programs.alacritty.enable [ "themes/noctalia.toml" ];
+  programs.alacritty.settings =
+    let
+      alacritty = config.programs.alacritty;
+    in {
+      general.import = lib.mkIf (alacritty.enable && alacritty.settings != {}) [ "themes/noctalia.toml" ];
+    };
 }
