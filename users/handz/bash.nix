@@ -10,6 +10,9 @@ in {
       # NixOS
       nix-rbs = "sudo nixos-rebuild switch --flake ${xdg.configHome}/nixos#nixos-desktop";
       nix-rbb = "sudo nixos-rebuild boot --flake ${xdg.configHome}/nixos#nixos-desktop";
+      nix-lgens = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+      nix-sqr = "nix-store --query --roots";
+      nix-sqref = "nix-store --query --referrers";
 
       # Remote launch
       # https://dblsaiko.net/kb-gui-login-ssh.html
