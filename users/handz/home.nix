@@ -71,7 +71,7 @@
     eza
     bat
     file
-    ncdu
+    dua
     gnumake
     fd
 
