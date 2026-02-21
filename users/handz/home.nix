@@ -73,6 +73,7 @@
     file
     ncdu
     gnumake
+    fd
 
     # browser
     brave
