@@ -13,6 +13,7 @@ in {
       nix-lgens = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
       nix-sqr = "nix-store --query --roots";
       nix-sqref = "nix-store --query --referrers";
+      nix-gdiff-last = "${pkgs.nvd}/bin/nvd diff $(${pkgs.coreutils-full}/bin/ls -d1v /nix/var/nix/profiles/system-*-link | ${pkgs.coreutils-full}/bin/tail -n 2)";
 
       # Remote launch
       # https://dblsaiko.net/kb-gui-login-ssh.html
