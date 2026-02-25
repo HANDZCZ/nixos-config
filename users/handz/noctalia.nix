@@ -86,6 +86,7 @@
       };
       wallpaper = {
         enabled = true;
+        transitionType = "honeycomb";
         overviewEnabled = true;
         recursiveSearch = true;
         wallhavenPurity = "010";
