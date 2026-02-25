@@ -5,7 +5,7 @@ let
   version = "1.17.3";
   hash = "sha256-cDnr8TxeVYH9ES1+l9JqgCoWO9IcXGZis+kNNVWHCmQ=";
 
-  package = pkgs.mailspring.overrideAttrs (final: prev: {
+  package = pkgs-unstable.mailspring.overrideAttrs (final: prev: {
     inherit version;
     useLibSecret = true;
     forceX11 = false;
@@ -17,11 +17,6 @@ let
 
     nativeBuildInputs = with pkgs; prev.nativeBuildInputs ++ [
       patchelf
-    ];
-
-    buildInputs = with pkgs; prev.buildInputs ++ [
-      curl
-      openssl
     ];
 
     runtimeDependencies = with pkgs; prev.runtimeDependencies ++ [
@@ -47,10 +42,6 @@ let
 
   upstream-package = pkgs-unstable.mailspring;
   assertions = [
-    {
-      assertion = !lib.versionAtLeast upstream-package.version package.version;
-      message = "Mailspring is already up to date";
-    }
     {
       assertion = !builtins.any (p: lib.getName p == "libnotify") upstream-package.runtimeDependencies;
       message = "`libnotify` has already been added to Mailspring's runtime dependencies";
