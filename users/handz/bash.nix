@@ -29,7 +29,7 @@ in {
       #ds-stats = "docker system df -v";
 
       # Git
-      gspull = "${pkgs.git}/bin/git stash && git pull && git stash pop";
+      gspull = "${pkgs.git}/bin/git stash && ${pkgs.git}/bin/git pull && ${pkgs.git}/bin/git stash pop";
       glog = "${pkgs.git}/bin/git log --graph --show-signature --format=fuller";
       grcad = "${pkgs.git}/bin/git rebase -i --committer-date-is-author-date";
 
