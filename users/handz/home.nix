@@ -74,6 +74,7 @@
     dua
     gnumake
     fd
+    nvd
 
     # browser
     brave
