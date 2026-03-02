@@ -54,6 +54,10 @@
     };
   };
 
+  xdg.mimeApps = {
+    enable = true;
+  };
+
   home.packages = with pkgs; [
     # misc
     pkgs-unstable.signal-desktop
