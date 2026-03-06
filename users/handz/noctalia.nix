@@ -22,20 +22,20 @@
           url = "https://github.com/noctalia-dev/noctalia-plugins";
         }
       ];
-      states = {
-        screen-recorder = {
-          enabled = true;
+      states =
+        let
+          official = {
+            screen-recorder = true;
+            privacy-indicator = true;
+            simple-notes = true;
+            activate-linux = false;
+            kaomoji-provider = true;
+            unicode-picker = true;
+          };
+        in {} // lib.mapAttrs (key: val: {
+          enabled = val;
           sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-        };
-        privacy-indicator = {
-          enabled = true;
-          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-        };
-        simple-notes = {
-          enabled = true;
-          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-        };
-      };
+        }) official;
       version = 1;
     };
     pluginSettings = {
@@ -56,6 +56,11 @@
         hideInactive = false;
         iconSpacing = 4;
         removeMargins = false;
+      };
+      activate-linux = {
+        customizeText = true;
+        firstLine = "Activate NixOS";
+        secondLine = "System activation queued\nHydra is evaluating your life";
       };
     };
 
