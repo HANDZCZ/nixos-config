@@ -15,7 +15,7 @@
     ./cursor_icon_themes.nix
     ./alacritty.nix
     ./starship.nix
-    ./nixvim.nix
+    ./nixvim
     ./vscode.nix
     ./containerization.nix
     ./lazygit.nix
