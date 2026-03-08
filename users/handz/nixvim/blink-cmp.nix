@@ -27,6 +27,13 @@
               '';
             };
           };
+          completion.list = {
+            max_items = 2000;
+            selection = {
+              preselect = false;
+              auto_insert = false;
+            };
+          };
         };
       };
     };
