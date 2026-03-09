@@ -1,6 +1,9 @@
-{ ... }:
+{ config, lib, ... }:
 
-{
+let
+  blink-cmp-cfg = config.programs.nixvim.plugins.blink-cmp;
+  blink-cmp-providers = blink-cmp-cfg.settings.sources.providers;
+in {
   programs.nixvim = {
     plugins = {
       colorful-menu.enable = true;
@@ -34,8 +37,23 @@
               auto_insert = false;
             };
           };
+          sources = {
+            default = [ "lsp" "buffer" "snippets" "path" ]
+              ++ lib.optional blink-cmp-providers.spell.enabled "spell";
+            providers = {
+              spell = {
+                enabled = true;
+                module = "blink-cmp-spell";
+                name = "Spell";
+                opts = {
+                  max_entries = 25;
+                };
+              };
+            };
+          };
         };
       };
+      blink-cmp-spell.enable = blink-cmp-providers.spell.enabled;
     };
   };
 }
