@@ -10,12 +10,12 @@
             enable = true;
             settings =
               let
-                flake = ''(builtins.getFlake "${config.xdg.configHome}/nixos")'';
+                flake = /* nix */ ''(builtins.getFlake "${config.xdg.configHome}/nixos")'';
               in {
-                nixpkgs.expr = "import ${flake}.inputs.nixpkgs {}";
+                nixpkgs.expr = /* nix */ "import ${flake}.inputs.nixpkgs {}";
                 options = {
-                  nixos.expr = "${flake}.nixosConfigurations.${osConfig.system.name}.options";
-                  home-manager.expr = ''
+                  nixos.expr = /* nix */ "${flake}.nixosConfigurations.${osConfig.system.name}.options";
+                  home-manager.expr = /* nix */ ''
                     let
                       flake = ${flake};
                       pkgs = import flake.inputs.nixpkgs {};
