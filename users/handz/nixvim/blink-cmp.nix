@@ -45,6 +45,7 @@ in {
                 enabled = true;
                 module = "blink-cmp-spell";
                 name = "Spell";
+                score_offset = -100;
                 opts = {
                   max_entries = 25;
                 };
