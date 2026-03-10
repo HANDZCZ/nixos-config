@@ -88,7 +88,6 @@
           #code = true;
           discord = true;
           #helix = true;
-          qimgv = true;
         };
         enableUserTemplates = false;
       };

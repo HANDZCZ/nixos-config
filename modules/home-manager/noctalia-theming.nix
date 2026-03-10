@@ -12,7 +12,6 @@ in {
       ../../patches/noctalia/Fix-theme-template-apply-for-gtk.patch
       ../../patches/noctalia/Fix-theme-template-apply-for-niri.patch
       ../../patches/noctalia/Fix-theme-template-apply-for-alacritty.patch
-      ../../patches/noctalia/Add-qimgv-theme-template.patch
     ];
   }));
 
