@@ -15,6 +15,7 @@ in {
     ./lsp.nix
     ./tiny-inline-diagnostic.nix
     ./theme.nix
+    ./telescope.nix
   ];
 
   programs.nixvim = {
