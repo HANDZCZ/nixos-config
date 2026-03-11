@@ -14,6 +14,7 @@
   programs.nixvim = {
     colorscheme = "onedark";
     extraPlugins = [
+      # use unstable package, because it fixes some color definitions for plugins
       pkgs-unstable.vimPlugins.onedarkpro-nvim
     ];
 
@@ -62,6 +63,8 @@
           GitSignsAddInline = { bg = "''${highlight_add}" },
           GitSignsChangeInline = { bg = "''${highlight_change}" },
           GitSignsDeleteInline = { bg = "''${highlight_delete}" },
+          -- fix fg color being overridden, making TODO, ERROR, INFO, WARN text unreadable
+          [ "@lsp.type.comment.nix" ] = { },
         },
         plugins = {
           startify = false,
