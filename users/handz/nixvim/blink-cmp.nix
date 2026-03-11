@@ -39,6 +39,10 @@ in {
               auto_insert = false;
             };
           };
+          completion.documentation = {
+            auto_show = true;
+            auto_show_delay_ms = 50;
+          };
           sources = {
             default = [ "lsp" "buffer" "snippets" "path" ]
               ++ lib.optional blink-cmp-providers.spell.enabled "spell"
