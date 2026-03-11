@@ -1,42 +1,44 @@
 { lib, ... }:
 
-{
+let
+  git-keybind = "<leader>g";
+in {
   programs.nixvim = {
     keymaps = [
       {
         action = "<cmd>Gitsigns preview_hunk_inline<CR>";
         mode = "n";
-        key = "<leader>gi";
+        key = "${git-keybind}i";
         options.desc = "Preview hunk inline";
       }
       {
         action = "<cmd>Gitsigns preview_hunk<CR>";
         mode = "n";
-        key = "<leader>gp";
+        key = "${git-keybind}p";
         options.desc = "Preview hunk";
       }
       {
         action = "<cmd>Gitsigns blame<CR>";
         mode = "n";
-        key = "<leader>gb";
+        key = "${git-keybind}B";
         options.desc = "Blame file";
       }
       {
         action = "<cmd>Gitsigns blame_line<CR>";
         mode = "n";
-        key = "<leader>gl";
+        key = "${git-keybind}L";
         options.desc = "Blame line";
       }
       {
         action = "<cmd>Gitsigns toggle_word_diff<CR>";
         mode = "n";
-        key = "<leader>gw";
+        key = "${git-keybind}w";
         options.desc = "Toggle word diff";
       }
       {
         action = "<cmd>Gitsigns diffthis origin/HEAD<CR>";
         mode = "n";
-        key = "<leader>gd";
+        key = "${git-keybind}d";
         options.desc = "Diff HEAD";
       }
     ];
@@ -44,10 +46,11 @@
     plugins = {
       which-key.settings.spec = [
         {
-          __unkeyed = "<leader>g";
+          __unkeyed = "${git-keybind}";
           group = "Git";
         }
       ];
+
       gitsigns = {
         enable = true;
         settings = {
