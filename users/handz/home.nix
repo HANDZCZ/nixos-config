@@ -60,6 +60,7 @@
     pkgs-unstable.signal-desktop
     yt-dlp
     qbittorrent
+    mission-center
 
     # development
     rustup
