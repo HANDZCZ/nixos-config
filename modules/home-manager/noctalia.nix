@@ -1,6 +1,11 @@
 { pkgs, lib, config, inputs, ... }:
 
 let
+  quickshell_patches = [
+    # https://github.com/NixOS/nixpkgs/pull/483139
+    ../../patches/noctalia-qs/Fix-unneccessary-reloads.patch
+  ];
+
   cfg = config.programs.noctalia-shell;
   overlayType = lib.mkOptionType {
     name = "nixpkgs-overlay";
@@ -56,6 +61,9 @@ in {
 
     final_package = package.override (old-noct: {
       extraPackages = (old-noct.extraPackages or []) ++ cfg.extraPackages;
+      quickshell = old-noct.quickshell.overrideAttrs (old-qs: {
+        patches = (old-qs.patches or []) ++ quickshell_patches;
+      });
     });
   in {
     systemd.enable = lib.mkDefault true;
