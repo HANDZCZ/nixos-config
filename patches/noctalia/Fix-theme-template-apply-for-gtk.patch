@@ -1,39 +1,29 @@
-From 0a2bf6098ee371ee22ae900f6864e4ad769554dc Mon Sep 17 00:00:00 2001
+From a06c7389d8c83d537a20f42f0a0384124c9146dc Mon Sep 17 00:00:00 2001
 From: HANDZCZ <handz@email.cz>
-Date: Fri, 20 Feb 2026 23:37:39 +0100
+Date: Thu, 12 Mar 2026 20:33:38 +0100
 Subject: [PATCH] Fix theme template apply for gtk
 
 ---
- Scripts/python/src/theming/gtk-refresh.py | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ Scripts/python/src/theming/gtk-refresh.py | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/Scripts/python/src/theming/gtk-refresh.py b/Scripts/python/src/theming/gtk-refresh.py
-index 18f409d..c40697e 100644
+index 436bf91f0..5d680c80e 100644
 --- a/Scripts/python/src/theming/gtk-refresh.py
 +++ b/Scripts/python/src/theming/gtk-refresh.py
-@@ -50,7 +50,9 @@ async def apply_gtk3_colors(config_dir: Path):
+@@ -53,9 +53,10 @@ def ensure_gtk_css_import(gtk_css: Path, colors_file: Path, label: str) -> bool:
+         print(f"Error: {label} noctalia.css not found at {colors_file}", file=sys.stderr)
          return False
  
+-    # If gtk.css is a symlink, replace it with a regular file
      if gtk_css.is_symlink():
 -        gtk_css.unlink()
 +        # If it is a symlink don't do anything
 +        # Fixes: Existing file '...' would be clobbered by backing up '...'
 +        return True
-     elif gtk_css.exists():
-         backup_name = f"gtk.css.backup.{int(os.path.getmtime(gtk_css))}"
-         gtk_css.rename(gtk3_dir / backup_name)
-@@ -71,6 +73,11 @@ async def apply_gtk4_colors(config_dir: Path):
-         print(f"Error: GTK4 noctalia.css not found at {colors_file}", file=sys.stderr)
-         return False
  
-+    if gtk_css.is_symlink():
-+        # If it is a symlink don't do anything
-+        # Fixes: Existing file '...' would be clobbered by backing up '...'
-+        return True
-+
-     gtk_css.write_text(gtk4_import)
-     print("Updated GTK4 CSS import")
-     return True
+     if gtk_css.exists():
+         content = gtk_css.read_text()
 -- 
 2.51.2
 
