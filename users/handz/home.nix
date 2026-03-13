@@ -93,11 +93,6 @@
     # for testing steam, gamescope, ...
     vulkan-tools
 
-    # disk io tools
-    sysstat # iostat
-    iotop   # like ps for io
-    iozone  # disk io speed testing
-
     # gaming
     lutris
     heroic
