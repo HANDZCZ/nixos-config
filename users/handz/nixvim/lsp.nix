@@ -6,6 +6,18 @@
       lsp = {
         enable = true;
         servers = {
+          nil_ls = {
+            enable = true;
+            settings = {
+              nix = {
+                maxMemoryMB = 12 * 1024;
+                flake = {
+                  autoEvalInputs = true;
+                  nixpkgsInputName = "nixpkgs";
+                };
+              };
+            };
+          };
           nixd = {
             enable = true;
             settings =
