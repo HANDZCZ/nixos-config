@@ -30,13 +30,14 @@ in {
       cache_dir = ${cfg.cacheDir}
     '';
   in lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [ ccache ];
     nix.settings.extra-sandbox-paths = lib.optionals cfg.addToSandboxPaths [ "${cfg.cacheDir}" ];
     systemd.tmpfiles.rules = lib.mkIf (cfg.extraConfig != "") [ "L+ ${cfg.cacheDir}/ccache.conf - - - - ${ccacheConfigFile}" ];
 
     nixpkgs.overlays = [
       (final: prev: {
         ccacheWrapper = prev.ccacheWrapper.override {
-          extraConfig = ''
+          extraConfig = /* bash */ ''
             CCACHE_DIR="${cfg.cacheDir}"
             export CCACHE_CONFIGPATH="''${CCACHE_CONFIGPATH:-${ccacheConfigFile}}"
             if [ ! -d "$CCACHE_DIR" ]; then
