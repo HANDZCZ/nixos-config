@@ -9,6 +9,7 @@
     enable = true;
     settings = {
       git.commit.autoWrapCommitMessage = false;
+      gui.fileTreeSortOrder = "foldersFirst";
     };
   };
 }

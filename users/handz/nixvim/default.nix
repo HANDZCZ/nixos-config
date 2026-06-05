@@ -21,6 +21,7 @@ in {
 
   programs.nixvim = {
     enable = true;
+    nixpkgs.useGlobalPackages = true;
     defaultEditor = true;
     globals = {
       mapleader = " ";

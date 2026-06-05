@@ -52,7 +52,7 @@ in {
 
   programs.ssh = {
     enable = true;
-    matchBlocks = {
+    settings = {
       "github.com" = {
         user = "git";
         identityFile = [ "~/.ssh/git/id_ed25519_github.com" ];
