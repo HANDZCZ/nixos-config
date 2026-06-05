@@ -46,8 +46,7 @@
     ];
     config = {
       common = {
-        default = [ "gtk" ];
-        "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+        default = [ "gtk" "gnome" ];
       };
     };
   };
