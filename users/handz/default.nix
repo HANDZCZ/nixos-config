@@ -21,6 +21,7 @@ in {
     # needed to open ports
     localsend.enable = true;
     gpu-screen-recorder.enable = true;
+    sniffnet.enable = true;
   };
   services.gvfs.enable = true;
   services.zerotierone.enable = true;
