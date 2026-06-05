@@ -29,7 +29,7 @@ in {
         allowInsecurePredicate = _: true;
       };
     };
-    kernel-pkgs = kernel-flake.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+    kernel-pkgs = kernel-flake.legacyPackages.${system};
     helpers = kernel-nixpkgs.callPackage "${kernel-flake.outPath}/helpers.nix" {};
 
     kernel = kernel-pkgs.linux-cachyos-latest-lto-x86_64-v3;
@@ -168,6 +168,28 @@ in {
     dig
   ];
 
+  services.lact = {
+    enable = true;
+    settings = {
+      version = 5;
+      daemon = {
+        log_level = "info";
+        admin_group = "wheel";
+        disable_clocks_cleanup = false;
+      };
+      apply_settings_timer = 15;
+      gpus."10DE:2482-1458:408F-0000:2d:00.0" = {
+        fan_control_enabled = false;
+        power_cap = 250.0;
+        min_core_clock = 210;
+        max_core_clock = 2055;
+        gpu_clock_offsets."0" = 40;
+        mem_clock_offsets."0" = 1000;
+      };
+      current_profile = null;
+      auto_switch_profiles = false;
+    };
+  };
   hardware.graphics.enable = true;
   hardware.nvidia = {
     open = true;
