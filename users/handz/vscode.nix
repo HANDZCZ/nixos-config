@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.vscode = {
@@ -16,6 +16,8 @@
         fill-labs.dependi
         # Nix
         jnoortheen.nix-ide
+        # Presentations
+        marp-team.marp-vscode
       ];
       userSettings = {
         workbench = {
@@ -37,6 +39,12 @@
         git.openRepositoryInParentFolders = "never";
         vim = {
           smartRelativeLine = true;
+        };
+        markdown.marp = {
+          enableHtml = true;
+          pdf.noteAnnotations = true;
+          # TODO: set chromium based browser to the one user uses or just set it to some chromium
+          chromePath = lib.getExe pkgs.brave;
         };
       };
       keybindings = [
@@ -74,6 +82,11 @@
           key = "ctrl+[Period]";
           command = "-editor.action.quickFix";
           when = "editorHasCodeActionsProvider && textInputFocus && !editorReadonly";
+        }
+        {
+          key = "ctrl+shift+v";
+          command = "-markdown.showPreview";
+          when = "!notebookEditorFocused && editorLangId =~ /^(markdown|prompt|instructions|chatmode)$/";
         }
       ];
     };
