@@ -7,6 +7,7 @@
       add_newline = true;
       character.disabled = true;
       line_break.disabled = true;
+      hostname.ssh_only = false;
       format = lib.concatStrings [
         "[┌─«](bold green) "
         "$all"
