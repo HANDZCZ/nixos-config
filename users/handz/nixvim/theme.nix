@@ -1,4 +1,4 @@
-{ config, pkgs-unstable, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   warnings = let
@@ -14,8 +14,7 @@
   programs.nixvim = {
     colorscheme = "onedark";
     extraPlugins = [
-      # use unstable package, because it fixes some color definitions for plugins
-      pkgs-unstable.vimPlugins.onedarkpro-nvim
+      pkgs.vimPlugins.onedarkpro-nvim
     ];
 
     extraConfigLua = ''

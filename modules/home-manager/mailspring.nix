@@ -5,7 +5,7 @@ let
   version = "1.17.3";
   hash = "sha256-cDnr8TxeVYH9ES1+l9JqgCoWO9IcXGZis+kNNVWHCmQ=";
 
-  package = pkgs-unstable.mailspring.overrideAttrs (final: prev: {
+  package = pkgs.mailspring.overrideAttrs (final: prev: {
     inherit version;
     useLibSecret = true;
     forceX11 = false;
