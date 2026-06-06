@@ -1,4 +1,4 @@
-{ pkgs-unstable, inputs, ... }:
+{ inputs, ... }:
 
 {
   imports = [
@@ -14,7 +14,6 @@
     };
     equibop = {
       enable = true;
-      package = pkgs-unstable.equibop;
     };
     config = {
       /*themeLinks = [
@@ -160,6 +159,10 @@
         };
         viewRaw.enable = true;
         voiceChatDoubleClick.enable = true;
+        voiceChannelLog  = {
+          enable= true;
+          soundboardFileType = ".mp3";
+        };
         voiceDownload.enable = true;
         volumeBooster.enable = true;
         whoReacted.enable = true;
@@ -176,10 +179,6 @@
         sortFriends = {
           enable = true;
           showDates = true;
-        };
-        soundBoardLogger = {
-          enable = true;
-          fileType = ".mp3";
         };
         splitLargeMessages.enable = true;
         whosWatching.enable = true;
