@@ -1,13 +1,6 @@
 { config, pkgs, inputs, ... }:
 
-let
-  xsession-wrapper = pkgs.runCommand "xsession-wrapper-fixed" {
-    src = config.services.displayManager.sessionData.wrapper;
-  } ''
-    cp --preserve=mode $src $out
-    substituteInPlace $out --replace "X-NIXOS-SYSTEMD-AWARE" "X-NIXOS-SYSTEMD-AWARE|niri"
-  '';
-in {
+{
   imports = [
     ./hardware-configuration.nix
     ../../users/handz
@@ -207,9 +200,6 @@ in {
   services.displayManager.ly = {
     enable = true;
     x11Support = false;
-    settings = {
-      setup_cmd = "${xsession-wrapper}";
-    };
   };
 
   nix.settings = {
