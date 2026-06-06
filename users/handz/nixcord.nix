@@ -103,6 +103,10 @@
         noReplyMention.enable = true;
         normalizeMessageLinks.enable = true;
         noUnblockToJump.enable = true;
+        openInApp = {
+          enable = true;
+          epic = false;
+        };
         pauseInvitesForever.enable = true;
         permissionsViewer.enable = true;
         petpet.enable = true;
@@ -170,27 +174,33 @@
         # Equicord
         betterAudioPlayer.enable = true;
         characterCounter.enable = true;
+        clickableRoles.enable = true;
         gifCollections.enable = true;
         messageLoggerEnhanced = {
           enable = true;
           saveImages = true;
           ignoreSelf = true;
         };
+        noPushToTalk.enable = true;
         sortFriends = {
           enable = true;
           showDates = true;
         };
+        silenceUsers = {
+          enable = true;
+          mutedUserIds = [
+              468362554562052096
+            ]
+            |> map toString
+            |> builtins.concatStringsSep ",";
+        };
         splitLargeMessages.enable = true;
+        equibopStreamFixes.enable = true;
         whosWatching.enable = true;
       };
     };
     extraConfig = {
       plugins = {
-        # Vencord
-        openInApp = {
-          enable = true;
-          epic = false;
-        };
       };
     };
   };
