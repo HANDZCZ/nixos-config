@@ -25,7 +25,7 @@
     kernel-pkgs = kernel-flake.legacyPackages.${system};
     helpers = kernel-nixpkgs.callPackage "${kernel-flake.outPath}/helpers.nix" {};
 
-    kernel = kernel-pkgs.linux-cachyos-latest-lto-x86_64-v3;
+    kernel = kernel-pkgs.linux-cachyos-bore-lto-x86_64-v3;
 
     kernel-with-ccache = kernel.override (prev: if !config.programs.ccache.enable then {} else rec {
       stdenv = pkgs.ccacheStdenv.override {
