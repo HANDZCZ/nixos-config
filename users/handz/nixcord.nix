@@ -47,6 +47,7 @@
           showWithoutHover = true;
           allCallTimers = true;
           showRoleColor = true;
+          trackSelf = true;
         };
         ClearURLs.enable = true;
         consoleJanitor.enable = true;
