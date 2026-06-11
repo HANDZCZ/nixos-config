@@ -73,6 +73,15 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    niri-nix = {
+      url = "git+https://codeberg.org/BANanaD3V/niri-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        niri-unstable.follows = "";
+        xwayland-satellite-unstable.follows = "";
+      };
+    };
   };
 
   nixConfig = {

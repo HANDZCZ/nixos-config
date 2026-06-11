@@ -23,6 +23,7 @@
     ./obs.nix
     ./qimgv.nix
     ./distrobox.nix
+    ./niri
   ];
 
   home.sessionVariables = {
