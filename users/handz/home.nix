@@ -1,4 +1,4 @@
-{ osConfig, pkgs, pkgs-unstable, lib, ... }:
+{ config, osConfig, pkgs, pkgs-unstable, lib, ... }:
 
 {
   imports = [
@@ -55,6 +55,10 @@
   xdg.mimeApps = {
     enable = true;
   };
+
+  # WARN: use legacy home-manager setting so gtk4 apps get themed
+  #       this also silences the warning
+  gtk.gtk4.theme = lib.mkDefault config.gtk.theme;
 
   programs.ssh = {
     enable = true;
