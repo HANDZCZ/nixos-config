@@ -17,12 +17,6 @@
       options = [ "subvol=root" "compress-force=zstd:1" ];
     };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      options = [ "subvol=home" "compress-force=zstd:1" ];
-    };
-
   fileSystems."/nix" =
     { device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
@@ -35,23 +29,16 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  fileSystems."/media/drive-d" =
-    { device = "/dev/disk/by-uuid/D0C4C576C4C55F7A";
-      fsType = "ntfs3";
-      # https://docs.kernel.org/filesystems/ntfs3.html
-      # https://github.com/ValveSoftware/Proton/wiki/Using-a-NTFS-disk-with-Linux-and-Windows#editing-fstab
-      options = [
-        "rw"
-        # if enabled proton can't be used, because it can't create files with invalid names that it relies on
-        #"windows_names" # Prevent filesnames not allowed by Windows
-        "discard" # Enable support of the TRIM
-        "nofail" # Prevent system not booting if mounting fails
-        "uid=1000"
-        "gid=1000"
-        "user"
-        "exec"
-        "umask=000"
-      ];
+  fileSystems."/home" =
+    { device = "/dev/disk/by-label/data";
+      fsType = "btrfs";
+      options = [ "subvol=home" "compress-force=zstd:1" ];
+    };
+
+  fileSystems."/media/Games" =
+    { device = "/dev/disk/by-label/data-1TB";
+      fsType = "btrfs";
+      options = [ "subvol=games" "compress-force=zstd:1" ];
     };
 
   swapDevices = [ ];
