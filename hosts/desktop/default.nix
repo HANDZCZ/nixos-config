@@ -70,6 +70,22 @@
     algorithm = "zstd";
   };
 
+  services.beesd.filesystems = let
+    mkFsConf = label: size: {
+      "${label}" = {
+        spec = "LABEL=${label}";
+        hashTableSizeMB = size;
+        extraOptions = [
+          "--loadavg-target" "16.0"
+          "--thread-factor" "0.75"
+          "--throttle-factor" "1.0"
+        ];
+      };
+    };
+  in {}
+    // mkFsConf "data" 512
+    // mkFsConf "data-1TB" 512;
+
   boot.loader.grub = {
     enable = true;
     device = "nodev";
