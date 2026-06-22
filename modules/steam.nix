@@ -1,12 +1,15 @@
 { inputs, pkgs, pkgs-unstable, ... }:
 
-{
+let
+  nix-tools-steam-pkgs = inputs.nix-tools-steam.packages.${pkgs.stdenv.hostPlatform.system};
+in {
   imports = [
     inputs.nix-gaming.nixosModules.platformOptimizations
   ];
 
   environment.systemPackages = with pkgs; [
     mangohud
+    nix-tools-steam-pkgs.accela
   ];
 
   programs = {
@@ -15,6 +18,9 @@
       extraCompatPackages = [];
       platformOptimizations.enable = true;
       protontricks.enable = true;
+      package = pkgs.steam.override {
+        extraEnv.LD_AUDIT = "${nix-tools-steam-pkgs.sls-steam}/lib/library-inject.so:${nix-tools-steam-pkgs.sls-steam}/lib/SLSsteam.so";
+      };
     };
     gamescope = {
       enable = true;

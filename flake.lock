@@ -207,6 +207,29 @@
         "type": "github"
       }
     },
+    "nix-tools-steam": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782160847,
+        "narHash": "sha256-sKnPcAPGzq0WDkoJxFL8nOET/ImqSjk5t2ViZ4GrdHE=",
+        "owner": "HANDZCZ",
+        "repo": "nix-tools-steam",
+        "rev": "6efde99e67dd8b74a60cb2aad476b91c1638148f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "HANDZCZ",
+        "repo": "nix-tools-steam",
+        "type": "github"
+      }
+    },
     "nix-vscode-extensions": {
       "inputs": {
         "nixpkgs": [
@@ -382,6 +405,7 @@
         "niri-nix": "niri-nix",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nix-gaming": "nix-gaming",
+        "nix-tools-steam": "nix-tools-steam",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_2",
