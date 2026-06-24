@@ -120,6 +120,7 @@
     vulkan-tools
 
     # gaming
+    ludusavi
     lutris
     heroic
     protonplus
