@@ -107,7 +107,11 @@
     brave
 
     # file browser
-    nemo-with-extensions
+    (nemo-with-extensions.override {
+      extensions = with pkgs; [
+        nemo-mediainfo-tab
+      ];
+    })
     file-roller
 
     # media player
