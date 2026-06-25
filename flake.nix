@@ -114,6 +114,7 @@
               nix-cachyos-kernel.overlays.pinned
               nix-gaming.overlays.default
               nix-vscode-extensions.overlays.default
+              (final: prev: import ./packages prev)
             ];
             inherit system;
           };
