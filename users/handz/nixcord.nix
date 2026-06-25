@@ -49,7 +49,7 @@
           showRoleColor = true;
           trackSelf = true;
         };
-        ClearURLs.enable = true;
+        clearUrls.enable = true;
         consoleJanitor.enable = true;
         copyEmojiMarkdown.enable = true;
         copyFileContents.enable = true;
@@ -97,7 +97,7 @@
           enable = true;
           reactionCount = 10;
         };
-        MutualGroupDMs.enable = true;
+        mutualGroupDms.enable = true;
         noDevtoolsWarning.enable = true;
         noF1.enable = true;
         noOnboardingDelay.enable = true;
@@ -120,7 +120,7 @@
         replyTimestamp.enable = true;
         revealAllSpoilers.enable = true;
         reverseImageSearch.enable = true;
-        ReviewDB.enable = true;
+        reviewDb.enable = true;
         sendTimestamps = {
           enable = true;
           replaceMessageContents = false;
@@ -155,7 +155,7 @@
         unsuppressEmbeds.enable = true;
         userMessagesPronouns.enable = true;
         userVoiceShow.enable = true;
-        USRBG.enable = true;
+        usrbg.enable = true;
         validReply.enable = true;
         validUser.enable = true;
         viewIcons = {
@@ -176,6 +176,7 @@
         betterAudioPlayer.enable = true;
         characterCounter.enable = true;
         clickableRoles.enable = true;
+        downloadAllAttachments.enable = true;
         gifCollections.enable = true;
         messageLoggerEnhanced = {
           enable = true;
