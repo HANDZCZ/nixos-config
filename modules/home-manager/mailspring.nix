@@ -1,5 +1,5 @@
 # original stolen from: https://github.com/avrahamappel/nixfiles/commit/59e85e6b9c4ef0d4b09705c07ce33d83f1cffecd
-{ config, pkgs, pkgs-unstable, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   version = "1.17.3";
@@ -40,21 +40,6 @@ let
     '';
   });
 
-  upstream-package = pkgs-unstable.mailspring;
-  assertions = [
-    {
-      assertion = !builtins.any (p: lib.getName p == "libnotify") upstream-package.runtimeDependencies;
-      message = "`libnotify` has already been added to Mailspring's runtime dependencies";
-    }
-    {
-      assertion = builtins.match "libEGL" upstream-package.postFixup == null;
-      message = "https://github.com/NixOS/nixpkgs/pull/282748 has been merged, need to rework my fix";
-    }
-    {
-      assertion = builtins.match "libGL" upstream-package.postFixup == null;
-      message = "`libGL` has been added to postFixup";
-    }
-  ];
   cfg = config.programs.mailspring;
 in {
   options.programs.mailspring = {
@@ -81,7 +66,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    inherit assertions;
     home.packages = [
       (cfg.package.overrideAttrs {
         useLibSecret = cfg.useLibSecret;
