@@ -127,7 +127,7 @@
     ludusavi
     lutris
     heroic
-    protonplus
+    pkgs-unstable.protonplus
     # utils for winetricks
     unrar
     unzip
