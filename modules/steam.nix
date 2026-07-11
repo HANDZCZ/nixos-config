@@ -19,7 +19,10 @@ in {
       platformOptimizations.enable = true;
       protontricks.enable = true;
       package = pkgs.steam.override {
-        extraEnv.LD_AUDIT = "${nix-tools-steam-pkgs.sls-steam}/lib/library-inject.so:${nix-tools-steam-pkgs.sls-steam}/lib/SLSsteam.so";
+        extraEnv = {
+          MANGOHUD = 1;
+          LD_AUDIT = "${nix-tools-steam-pkgs.sls-steam}/lib/library-inject.so:${nix-tools-steam-pkgs.sls-steam}/lib/SLSsteam.so";
+        };
       };
     };
     gamescope = {
