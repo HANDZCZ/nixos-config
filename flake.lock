@@ -220,11 +220,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782380896,
-        "narHash": "sha256-qFsqwYmdmFogNX9t/kiaSCSgVGFaBJKy9rg4Zwdoem4=",
+        "lastModified": 1783774535,
+        "narHash": "sha256-StbSPYW1lft4O+SKyZid/qyxM7tAqDpwyTGC8Qpijz0=",
         "owner": "HANDZCZ",
         "repo": "nix-tools-steam",
-        "rev": "b5bc413d168d22443e0e21715bcf1d6f8616c02c",
+        "rev": "f3f950ba869b405c87e88716f5e4e1e45d6d289e",
         "type": "github"
       },
       "original": {

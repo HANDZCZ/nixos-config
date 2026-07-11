@@ -10,6 +10,7 @@ in {
   environment.systemPackages = with pkgs; [
     mangohud
     nix-tools-steam-pkgs.accela
+    nix-tools-steam-pkgs.samrewritten
   ];
 
   programs = {
