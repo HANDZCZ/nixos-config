@@ -7,7 +7,8 @@ let
     move-col-mod = "Shift";
   };
   move-workspace-keys = {
-    up = "Page_Up"; down = "Page_Down";
+    up = [ "Page_Up" "KP_Prior" ];
+    down = [ "Page_Down" "KP_Next" ];
     move-ws-mod = "Shift";
     move-col-mod = "Ctrl";
   };
@@ -257,19 +258,20 @@ in {
       })
       |> lib.mergeAttrsList)
     // ([ "up" "down" ]
-      |> lib.map (dir: {
-        "Mod+${move-workspace-keys.${dir}}" = {
+      |> lib.map (dir: move-workspace-keys.${dir} |> lib.map (key: {
+        "Mod+${key}" = {
           _props.hotkey-overlay-title = "Focus workspace ${dir}";
           "focus-workspace-${dir}" = {};
         };
-        "Mod+${move-workspace-keys.move-ws-mod}+${move-workspace-keys.${dir}}" = {
+        "Mod+${move-workspace-keys.move-ws-mod}+${key}" = {
           _props.hotkey-overlay-title = "Move workspace ${dir}";
           "move-workspace-${dir}" = {};
         };
-        "Mod+${move-workspace-keys.move-col-mod}+${move-workspace-keys.${dir}}" = {
+        "Mod+${move-workspace-keys.move-col-mod}+${key}" = {
           _props.hotkey-overlay-title = "Move column to workspace ${dir}";
           "move-column-to-workspace-${dir}" = {};
         };
-      })
+      }))
+      |> lib.flatten
       |> lib.mergeAttrsList);
 }
