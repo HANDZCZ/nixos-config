@@ -9,6 +9,7 @@ in {
     shellAliases = {
       # NixOS
       nix-rbs = "sudo nixos-rebuild switch --flake ${xdg.configHome}/nixos#nixos-desktop";
+      nix-rbt = "sudo nixos-rebuild test --flake ${xdg.configHome}/nixos#nixos-desktop";
       nix-rbb = "sudo nixos-rebuild boot --flake ${xdg.configHome}/nixos#nixos-desktop";
       nix-lgens = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
       nix-sqr = "nix-store --query --roots";
