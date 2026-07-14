@@ -22,6 +22,7 @@ let
       ./autostart.nix
       ./fonts.nix
       ./obs.nix
+      ./xterm.nix
       ./browser.nix
     ];
 
