@@ -1,16 +1,19 @@
-{ config, pkgs, ... }:
+{ config, pkgs, host-info, ... }:
 
 let
   xdg = config.xdg;
+  mkNixRebuildAlias = command: "sudo nixos-rebuild ${command} --flake ${xdg.configHome}/nixos#${host-info.hostName}";
 in {
   programs.bash = {
     enable = true;
     historyControl = [ "ignoreboth" ];
     shellAliases = {
       # NixOS
-      nix-rbs = "sudo nixos-rebuild switch --flake ${xdg.configHome}/nixos#nixos-desktop";
-      nix-rbt = "sudo nixos-rebuild test --flake ${xdg.configHome}/nixos#nixos-desktop";
-      nix-rbb = "sudo nixos-rebuild boot --flake ${xdg.configHome}/nixos#nixos-desktop";
+      nix-rbs = mkNixRebuildAlias "switch";
+      nix-rbt = mkNixRebuildAlias "test";
+      nix-rbb = mkNixRebuildAlias "boot";
+      nix-rbda = mkNixRebuildAlias "dry-activate";
+      nix-rbdb = mkNixRebuildAlias "dry-build";
       nix-lgens = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
       nix-sqr = "nix-store --query --roots";
       nix-sqref = "nix-store --query --referrers";
