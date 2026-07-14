@@ -56,6 +56,18 @@ let
         };
       }
     ];
+
+    nixos-laptop = _shared ++ [
+      ../../modules/kde-plasma.nix
+      ../../modules/cloudflare-warp.nix
+      {
+        home-manager.users.${user-info.name} = {
+          home.packages = with pkgs; [
+            moonlight-qt
+          ];
+        };
+      }
+    ];
   };
 in {
   imports = per-host-modules.${host-info.hostName};
