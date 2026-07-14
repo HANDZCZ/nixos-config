@@ -100,36 +100,11 @@
     ];
   };
 
-  outputs = inputs@{ nixpkgs, nixpkgs-unstable, ... }: {
-    nixosConfigurations = {
-      nixos-desktop =
-        let
-          system = "x86_64-linux";
-          set-nixPath = { inputs, ... }: {
-            nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-          };
-          pkgs = import nixpkgs {
-            config.allowUnfree = true;
-            overlays = with inputs; [
-              nix-cachyos-kernel.overlays.pinned
-              nix-gaming.overlays.default
-              nix-vscode-extensions.overlays.default
-              (final: prev: import ./packages prev)
-            ];
-            inherit system;
-          };
-          pkgs-unstable = import nixpkgs-unstable {
-            config.allowUnfree = true;
-            inherit system;
-          };
-        in nixpkgs.lib.nixosSystem {
-          inherit pkgs;
-          specialArgs = { inherit inputs pkgs-unstable; };
-          modules = [
-            ./hosts/desktop
-            set-nixPath
-          ];
-        };
+  outputs = inputs: {
+    nixosConfigurations = let
+      inherit (import ./hosts { inherit inputs; }) mkHostConfig;
+    in {
+      nixos-desktop = mkHostConfig { folder = "desktop"; };
     };
   };
 }
