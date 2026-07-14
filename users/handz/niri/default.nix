@@ -1,25 +1,31 @@
-{ inputs, config, ... }:
+{ user-info, ... }:
 
 {
   imports = [
-    ./input.nix
-    ./outputs.nix
-    ./layout.nix
-    ./keybinds.nix
-    ./window_rules.nix
-    ./noctalia.nix
+    ../../../modules/niri.nix
   ];
 
-  wayland.windowManager.niri = {
-    enable = true;
-    package = null;
-    validation.enable = config.wayland.windowManager.niri.package != null;
+  home-manager.users.${user-info.name} = {
+    imports = [
+      ./input.nix
+      ./outputs.nix
+      ./layout.nix
+      ./keybinds.nix
+      ./window_rules.nix
+      ./noctalia.nix
+    ];
 
-    settings = {
-      prefer-no-csd = {};
-      screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
-      clipboard.disable-primary = {};
-      gestures.hot-corners.off = {};
+    wayland.windowManager.niri = {
+      enable = true;
+      package = null;
+      validation.enable = false;
+
+      settings = {
+        prefer-no-csd = {};
+        screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
+        clipboard.disable-primary = {};
+        gestures.hot-corners.off = {};
+      };
     };
   };
 }

@@ -1,10 +1,10 @@
-{ config, pkgs, host-info, ... }:
+{ hm-config, pkgs, host-info, user-info, ... }:
 
 let
-  xdg = config.xdg;
+  xdg = hm-config.xdg;
   mkNixRebuildAlias = command: "sudo nixos-rebuild ${command} --flake ${xdg.configHome}/nixos#${host-info.hostName}";
 in {
-  programs.bash = {
+  home-manager.users.${user-info.name}.programs.bash = {
     enable = true;
     historyControl = [ "ignoreboth" ];
     shellAliases = {

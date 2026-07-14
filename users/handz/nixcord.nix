@@ -1,7 +1,7 @@
-{ inputs, ... }:
+{ user-info, ... }:
 
 {
-  programs.nixcord = {
+  home-manager.users.${user-info.name}.programs.nixcord = {
     enable = true;
     discord = {
       enable = false;

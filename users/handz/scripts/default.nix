@@ -1,10 +1,12 @@
-{ pkgs, config, ... }:
+{ pkgs, hm-config, user-info, ... }:
 
 {
-  home.packages = [
-    (pkgs.callPackage ./ytdl_list_playlist.nix {
-      cacheHome = config.xdg.cacheHome;
-    })
-    (pkgs.callPackage ./fd-list.nix {})
-  ];
+  home-manager.users.${user-info.name} = {
+    home.packages = [
+      (pkgs.callPackage ./ytdl_list_playlist.nix {
+        cacheHome = hm-config.xdg.cacheHome;
+      })
+      (pkgs.callPackage ./fd-list.nix {})
+    ];
+  };
 }

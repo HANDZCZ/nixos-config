@@ -1,12 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, user-info, ... }:
 
 {
-  services.podman = {
-    enable = true;
-  };
+  home-manager.users.${user-info.name} = {
+    services.podman = {
+      enable = true;
+    };
 
-  home.packages = with pkgs; [
-    podman-compose
-    podman-desktop
-  ];
+    home.packages = with pkgs; [
+      podman-compose
+      podman-desktop
+    ];
+  };
 }

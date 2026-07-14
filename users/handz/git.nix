@@ -1,4 +1,4 @@
-{ ... }:
+{ user-info, ... }:
 
 let
   includes' = [
@@ -18,56 +18,59 @@ let
     }
   ];
 in {
-  xdg.configFile."git/allowed-signers".text = ''
-    handz@email.cz ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIENuL8sNTHVB/UOfB1pSiCn3CiDkm0ozGSvM3imwVwlj handz@DESKTOP-1OPEM0P
-  '';
-  programs.git = {
-    enable = true;
-    settings = {
-      user = {
-        name = "HANDZCZ";
-        email = "handz@email.cz";
+  home-manager.users.${user-info.name} = {
+    xdg.configFile."git/allowed-signers".text = ''
+      handz@email.cz ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIENuL8sNTHVB/UOfB1pSiCn3CiDkm0ozGSvM3imwVwlj handz@DESKTOP-1OPEM0P
+    '';
+
+    programs.git = {
+      enable = true;
+      settings = {
+        user = {
+          name = "HANDZCZ";
+          email = "handz@email.cz";
+        };
+        credential.helper = "store";
+        core.autocrlf = false;
+        gpg.ssh.allowedSignersFile = "~/.config/git/allowed-signers";
       };
-      credential.helper = "store";
-      core.autocrlf = false;
-      gpg.ssh.allowedSignersFile = "~/.config/git/allowed-signers";
+      signing = {
+        format = "ssh";
+        signByDefault = true;
+        key = "~/.ssh/git/id_ed25519_signing_key";
+      };
+      includes =
+        builtins.concatMap (inc:
+          map
+            (cond: {
+              condition = cond;
+              contents = inc.contents;
+            })
+            inc.condition
+        )
+        includes';
     };
-    signing = {
-      format = "ssh";
-      signByDefault = true;
-      key = "~/.ssh/git/id_ed25519_signing_key";
-    };
-    includes =
-      builtins.concatMap (inc:
-        map
-          (cond: {
-            condition = cond;
-            contents = inc.contents;
-          })
-          inc.condition
-      )
-      includes';
-  };
 
 
-  programs.ssh = {
-    enable = true;
-    settings = {
-      "github.com" = {
-        user = "git";
-        identityFile = [ "~/.ssh/git/id_ed25519_github.com" ];
-      };
-      "gitlab.com" = {
-        user = "git";
-        identityFile = [ "~/.ssh/git/id_ed25519_gitlab.com" ];
-      };
-      "git-ssh.handz.eu.org" = {
-        user = "git";
-        identityFile = [ "~/.ssh/git/id_ed25519_git-ssh.handz.eu.org" ];
-      };
-      "ssh.suyu.dev" = {
-        user = "git";
-        identityFile = [ "~/.ssh/git/id_ed25519_ssh.suyu.dev" ];
+    programs.ssh = {
+      enable = true;
+      settings = {
+        "github.com" = {
+          user = "git";
+          identityFile = [ "~/.ssh/git/id_ed25519_github.com" ];
+        };
+        "gitlab.com" = {
+          user = "git";
+          identityFile = [ "~/.ssh/git/id_ed25519_gitlab.com" ];
+        };
+        "git-ssh.handz.eu.org" = {
+          user = "git";
+          identityFile = [ "~/.ssh/git/id_ed25519_git-ssh.handz.eu.org" ];
+        };
+        "ssh.suyu.dev" = {
+          user = "git";
+          identityFile = [ "~/.ssh/git/id_ed25519_ssh.suyu.dev" ];
+        };
       };
     };
   };

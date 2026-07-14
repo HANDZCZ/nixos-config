@@ -1,7 +1,7 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, user-info, ... }:
 
 {
-  programs.vscodium = {
+  home-manager.users.${user-info.name}.programs.vscodium = {
     enable = true;
     package = pkgs.vscodium;
     mutableExtensionsDir = false;

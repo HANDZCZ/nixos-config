@@ -1,7 +1,7 @@
-{ config, osConfig, lib, pkgs, ... }:
+{ hm-config, config, lib, pkgs, user-info, ... }:
 
 let
-  nixcord = config.programs.nixcord;
+  nixcord = hm-config.programs.nixcord;
 
   mkEntry = name: command:
     pkgs.makeDesktopItem {
@@ -14,17 +14,17 @@ let
     } + "/${name}-autostart.desktop";
   mkCondEntry = condition: name: command: lib.mkIf condition (mkEntry name command);
   isInPackages = package:
-    lib.any (p: lib.getName p == package) config.home.packages
-    || lib.any (p: lib.getName p == package) osConfig.environment.systemPackages;
+    lib.any (p: lib.getName p == package) hm-config.home.packages
+    || lib.any (p: lib.getName p == package) config.environment.systemPackages;
   mkInPkgsEntry = package: name: command: mkCondEntry (isInPackages package) name command;
 in {
-  xdg.autostart = {
+  home-manager.users.${user-info.name}.xdg.autostart = {
     enable = true;
     entries = [
       (mkCondEntry (nixcord.enable && nixcord.equibop.enable) "Equibop" "equibop --start-minimized")
       (mkInPkgsEntry "qbittorrent" "qBittorrent" "qbittorrent --confirm-legal-notice")
       (mkInPkgsEntry "signal-desktop" "Signal" "signal-desktop --start-in-tray")
-      (mkCondEntry osConfig.programs.steam.enable "Steam" "steam -nochatui -nofriendsui -silent")
+      (mkCondEntry config.programs.steam.enable "Steam" "steam -nochatui -nofriendsui -silent")
       (mkInPkgsEntry "mailspring" "Mailspring" "mailspring --background")
     ];
   };
