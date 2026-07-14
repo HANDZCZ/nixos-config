@@ -1,10 +1,9 @@
-{ pkgs, inputs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 let
   user = "handz";
 in {
   imports = [
-    inputs.home-manager.nixosModules.home-manager
     ../../modules/niri.nix
     ../../modules/steam.nix
     ../../modules/sunshine.nix
@@ -17,6 +16,14 @@ in {
     packages = with pkgs; [];
   };
 
+  home-manager.users.${user} = {
+    imports = [ ./home.nix ];
+
+    home.username = "${user}";
+    home.homeDirectory = "/home/${user}";
+    home.stateVersion = "25.11";
+  };
+
   programs = {
     # needed to open ports
     localsend.enable = true;
@@ -26,19 +33,4 @@ in {
   services.gvfs.enable = true;
   services.zerotierone.enable = true;
 
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.${user} = { ... }: {
-      imports = [ ./home.nix ];
-
-      home.username = "${user}";
-      home.homeDirectory = "/home/${user}";
-      home.stateVersion = "25.11";
-    };
-    backupFileExtension = "backup";
-    extraSpecialArgs = {
-      inherit inputs pkgs-unstable;
-    };
-  };
 }

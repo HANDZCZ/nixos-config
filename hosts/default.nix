@@ -18,6 +18,10 @@ rec {
     ../modules/tz_locale.nix
     # Misc
     ({ pkgs, pkgs-unstable, lib, host-info, ... }: {
+      imports = [
+        inputs.home-manager.nixosModules.home-manager
+      ];
+
       networking.hostName = host-info.hostName;
 
       console = {
@@ -35,6 +39,15 @@ rec {
         net-tools
         dig
       ];
+
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        backupFileExtension = "backup";
+        extraSpecialArgs = {
+          inherit inputs pkgs-unstable host-info;
+        };
+      };
 
       nix.settings = {
         experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
