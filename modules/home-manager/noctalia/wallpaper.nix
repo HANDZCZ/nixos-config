@@ -1,4 +1,4 @@
-{ pkgs, lib, config, inputs, ... }:
+{ pkgs, lib, config, ... }:
 
 let
   cfg = config.programs.noctalia-shell;
@@ -79,10 +79,6 @@ let
     '';
   };
 in {
-  imports = [
-    inputs.noctalia.homeModules.default
-  ];
-
   options.programs.noctalia-shell = {
     dailyWallpaper = lib.mkEnableOption "daily wallpaper change";
     wallpaperScript = lib.mkEnableOption "" // {

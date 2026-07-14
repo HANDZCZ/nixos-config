@@ -3,7 +3,6 @@
 {
   imports = [
     ../../modules/home-manager/noctalia
-    inputs.noctalia.homeModules.default
   ];
 
   home.packages = with pkgs; [

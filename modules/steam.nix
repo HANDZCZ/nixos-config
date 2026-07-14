@@ -3,10 +3,6 @@
 let
   nix-tools-steam-pkgs = inputs.nix-tools-steam.packages.${pkgs.stdenv.hostPlatform.system};
 in {
-  imports = [
-    inputs.nix-gaming.nixosModules.platformOptimizations
-  ];
-
   environment.systemPackages = with pkgs; [
     mangohud
     nix-tools-steam-pkgs.accela

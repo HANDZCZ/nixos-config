@@ -9,10 +9,6 @@ let
     merge = lib.mergeOneOption;
   };
 in {
-  imports = [
-    inputs.noctalia.homeModules.default
-  ];
-
   options.programs.noctalia-shell = {
     basePackage = lib.mkOption {
       type = lib.types.package;

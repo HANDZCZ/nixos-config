@@ -2,7 +2,6 @@
 
 {
   imports = [
-    inputs.niri-nix.homeModules.default
     ./input.nix
     ./outputs.nix
     ./layout.nix

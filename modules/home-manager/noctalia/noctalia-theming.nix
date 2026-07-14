@@ -1,12 +1,8 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.programs.noctalia-shell;
 in {
-  imports = [
-    inputs.noctalia.homeModules.default
-  ];
-
   options.programs.noctalia-shell = {
     enableTheming = lib.mkEnableOption "theming through noctalia" // {
       default =

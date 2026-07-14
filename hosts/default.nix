@@ -20,6 +20,7 @@ rec {
     ({ pkgs, pkgs-unstable, lib, host-info, ... }: {
       imports = [
         inputs.home-manager.nixosModules.home-manager
+        inputs.nix-gaming.nixosModules.platformOptimizations
       ];
 
       networking.hostName = host-info.hostName;
@@ -44,6 +45,12 @@ rec {
         useGlobalPkgs = true;
         useUserPackages = true;
         backupFileExtension = "backup";
+        sharedModules = [
+          inputs.niri-nix.homeModules.default
+          inputs.noctalia.homeModules.default
+          inputs.nixvim.homeModules.nixvim
+          inputs.nixcord.homeModules.nixcord
+        ];
         extraSpecialArgs = {
           inherit inputs pkgs-unstable host-info;
         };
