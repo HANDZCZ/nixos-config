@@ -11,8 +11,42 @@ rec {
   ];
 
   default_modules = [
+    ../keymaps
+    ../modules/bootloader.nix
+    ../modules/ntsync.nix
+    ../modules/ccache.nix
+    ../modules/tz_locale.nix
     # Misc
     ({ pkgs, pkgs-unstable, lib, host-info, ... }: {
+      networking.hostName = host-info.hostName;
+
+      console = {
+        font = "Lat2-Terminus16";
+        useXkbConfig = lib.mkDefault true;
+      };
+
+      # Default packages
+      environment.systemPackages = with pkgs; [
+        neovim
+        wget
+        curl
+        git
+        xterm
+        net-tools
+        dig
+      ];
+
+      nix.settings = {
+        experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
+        auto-optimise-store = true;
+      };
+
+      nix.gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 7d";
+      };
+
       # following configuration is added only when building VM with build-vm
       virtualisation.vmVariant = {
         virtualisation = {
