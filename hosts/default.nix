@@ -21,6 +21,7 @@ rec {
       imports = [
         inputs.home-manager.nixosModules.home-manager
         inputs.nix-gaming.nixosModules.platformOptimizations
+        inputs.nix-tools-steam.nixosModules.hv-bypass
       ];
 
       networking.hostName = host-info.hostName;

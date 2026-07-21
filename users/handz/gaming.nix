@@ -3,6 +3,7 @@
 {
   imports = [
     ../../modules/steam.nix
+    ../../modules/hv-bypass.nix
   ];
 
   home-manager.users.${user-info.name} = {
