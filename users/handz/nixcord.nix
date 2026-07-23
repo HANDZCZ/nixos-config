@@ -66,7 +66,6 @@
           youtubeDescription = true;
         };
         forceOwnerCrown.enable = true;
-        friendsSince.enable = true;
         fullSearchContext.enable = true;
         fullUserInChatbox.enable = true;
         gameActivityToggle.enable = true;
@@ -174,12 +173,14 @@
         clickableRoles.enable = true;
         downloadAllAttachments.enable = true;
         gifCollections.enable = true;
+        gitHubRepos.enable = true;
         messageLoggerEnhanced = {
           enable = true;
           saveImages = true;
           ignoreSelf = true;
         };
         noPushToTalk.enable = true;
+        sidebarChat.enable = true;
         sortFriends = {
           enable = true;
           showDates = true;
