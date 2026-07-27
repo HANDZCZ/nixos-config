@@ -28,6 +28,7 @@ let
 
     nixos-desktop = _shared ++ [
       ../../modules/sunshine.nix
+      ../../modules/piper.nix
       ./niri
       ./cursor_icon_themes.nix
       ./noctalia.nix
