@@ -27,30 +27,7 @@
                 nixpkgs.expr = /* nix */ "import ${flake}.inputs.nixpkgs {}";
                 options = {
                   nixos.expr = /* nix */ "${flake}.nixosConfigurations.${osConfig.system.name}.options";
-                  home-manager.expr = /* nix */ ''
-                    let
-                      flake = ${flake};
-                      pkgs = import flake.inputs.nixpkgs {};
-                      pkgs-unstable = import flake.inputs.nixpkgs-unstable {};
-                    in (flake.inputs.home-manager.lib.homeManagerConfiguration {
-                      inherit pkgs;
-                      modules = [
-                        ${config.xdg.configHome}/nixos/users/${config.home.username}/home.nix
-                        {
-                          home = {
-                            username = "${config.home.username}";
-                            homeDirectory = "${config.home.homeDirectory}";
-                            stateVersion = "${config.home.stateVersion}";
-                          };
-                        }
-                      ];
-                      extraSpecialArgs = {
-                        inherit pkgs-unstable;
-                        inputs = flake.inputs;
-                        osConfig = flake.nixosConfigurations.nixos-desktop.config;
-                      };
-                    }).options
-                  '';
+                  home-manager.expr = /* nix */ "${flake}.nixosConfigurations.${osConfig.system.name}.options.home-manager.users.type.getSubOptions []";
                 };
               };
           };
