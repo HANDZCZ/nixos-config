@@ -18,6 +18,7 @@ in {
       package = pkgs.steam.override {
         extraEnv = {
           MANGOHUD = 1;
+          DXVK_HUD = "compiler";
           LD_AUDIT = "${nix-tools-steam-pkgs.sls-steam}/lib/library-inject.so:${nix-tools-steam-pkgs.sls-steam}/lib/SLSsteam.so";
         };
       };
