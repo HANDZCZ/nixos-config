@@ -166,11 +166,11 @@
         "umip-kmod": "umip-kmod"
       },
       "locked": {
-        "lastModified": 1784756536,
-        "narHash": "sha256-JQCPLXmAnePKRsSDS24Nu6vSHmHvNO52XB0kplTzV5U=",
+        "lastModified": 1787244452,
+        "narHash": "sha256-5qNGALuFUM2pA5FBo+mPBIoSwddlwvmvsFNrPqZM2IM=",
         "owner": "HANDZCZ",
         "repo": "nix-tools-steam",
-        "rev": "ea4977607d1449acc5c8c0a8bb5456fee23e5a91",
+        "rev": "c33320348382f2e51bba3cfd0c3635ae1c0c4383",
         "type": "github"
       },
       "original": {
@@ -425,11 +425,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784569798,
-        "narHash": "sha256-lCj0fvkoZrw2DSLaVPlgdyKG553iQhC39tsK0GlpC+k=",
+        "lastModified": 1784619300,
+        "narHash": "sha256-HHcadH6fIPPMeggUmN1+mHMvafMXzsrjYkQ8kwBV7Rg=",
         "owner": "HANDZCZ",
         "repo": "umip-kmod",
-        "rev": "c1ff7d4856e14a3c658376f80b5978bf83f31067",
+        "rev": "1661a05562fc3a24cda66ab30256baffb5b0f173",
         "type": "github"
       },
       "original": {
