@@ -35,7 +35,7 @@ in {
     };
   };
   services.ananicy = {
-    enable = true;
+    #enable = true;
     package = pkgs-unstable.ananicy-cpp;
     rulesProvider = pkgs-unstable.ananicy-rules-cachyos;
   };
