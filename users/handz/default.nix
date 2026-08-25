@@ -24,6 +24,24 @@ let
       ./obs.nix
       ./xterm.nix
       ./browser.nix
+      {
+        home-manager.users.${user-info.name} = {
+          home.packages = with pkgs; [
+            # misc
+            mission-center
+            yt-dlp
+
+            # media player
+            mpv
+
+            # music
+            pkgs-unstable.pear-desktop
+
+            # for testing graphics, steam, gamescope, ...
+            vulkan-tools
+          ];
+        };
+      }
     ];
 
     nixos-desktop = _shared ++ [
@@ -90,10 +108,6 @@ in {
     };
 
     home.packages = with pkgs; [
-      # misc
-      mission-center
-      yt-dlp
-
       # basic utils
       btop
       htop
@@ -105,15 +119,6 @@ in {
       gnumake
       fd
       nvd
-
-      # media player
-      mpv
-
-      # music
-      pkgs-unstable.pear-desktop
-
-      # for testing graphics, steam, gamescope, ...
-      vulkan-tools
     ]
     # htop for nvidia cards
     ++ lib.optionals config.hardware.nvidia.enabled [ pkgs.nvtopPackages.nvidia ];
