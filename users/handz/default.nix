@@ -88,6 +88,20 @@ let
         };
       }
     ];
+
+
+    # ------ SERVERS ------
+
+    _shared_servers = [
+      ./bash.nix
+      ./starship.nix
+      ./ssh.nix
+      ./lazygit.nix
+      ./nixvim
+      ./ranger.nix
+    ];
+
+    Athena = _shared_servers;
   };
 in {
   imports = per-host-modules.${host-info.hostName};
