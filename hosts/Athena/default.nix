@@ -5,6 +5,7 @@
     (modulesPath + "/virtualisation/qemu-vm.nix")
     ../../users/handz
     ../../modules/zramSwap.nix
+    ./pihole.nix
   ];
 
   networking.networkmanager.enable = true;
