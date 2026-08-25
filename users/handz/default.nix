@@ -47,6 +47,7 @@ let
     nixos-desktop = _shared ++ [
       ../../modules/sunshine.nix
       ../../modules/piper.nix
+      ../../modules/virt-manager.nix
       ./niri
       ./cursor_icon_themes.nix
       ./noctalia.nix
@@ -95,7 +96,7 @@ in {
   users.users.${user-info.name} = {
     isNormalUser = true;
     initialPassword = "secure_tm";
-    extraGroups = [ "wheel" "networkmanager" "gamemode" ];
+    extraGroups = [ "wheel" "networkmanager" "gamemode" "libvirtd" ];
     packages = with pkgs; [];
   };
 
