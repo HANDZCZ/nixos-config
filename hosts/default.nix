@@ -40,6 +40,7 @@ rec {
         xterm
         net-tools
         dig
+        openssh
       ];
 
       home-manager = {
