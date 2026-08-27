@@ -105,6 +105,12 @@
     in {
       nixos-desktop = mkHostConfig { folder = "desktop"; };
       nixos-laptop = mkHostConfig { folder = "laptop"; };
+
+      # ------ SERVERS ------
+      Athena = mkHostConfig {
+        folder = "Athena";
+        host-info.hostName = "Athena";
+      };
     };
   };
 }
