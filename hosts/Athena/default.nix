@@ -1,8 +1,8 @@
-{ pkgs, lib, modulesPath, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
-    (modulesPath + "/virtualisation/qemu-vm.nix")
+    ./hardware-configuration.nix
     ../../users/handz
     ../../modules/zramSwap.nix
     ./pihole.nix
@@ -13,15 +13,6 @@
 
   nix.settings = {
     trusted-users = [ "handz" ];
-  };
-
-  virtualisation.qemu.networkingOptions = lib.mkForce [
-    "-device virtio-net-pci,netdev=net0"
-    "-netdev bridge,id=net0,br=virbr0,helper=/run/wrappers/bin/qemu-bridge-helper"
-  ];
-  virtualisation = {
-    memorySize = 8129;
-    cores = 4;
   };
 
   system.stateVersion = "25.11";
