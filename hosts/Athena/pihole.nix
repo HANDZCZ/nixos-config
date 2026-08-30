@@ -6,6 +6,11 @@
     ../../modules/dnscrypt-proxy.nix
   ];
 
+  # We don't need resolved since we are running out own DNS server
+  services.resolved.enable = false;
+  # Add pihole to DNS servers so we have DNS
+  networking.nameservers = [ "127.0.0.1" ];
+
   services.pihole-ftl = {
     settings = {
       #misc.readOnly = false;
