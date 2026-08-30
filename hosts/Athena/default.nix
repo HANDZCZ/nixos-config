@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }:
 
-{
+let
+  networks = lib.genAttrs [ "servers" "lan" "iot-net" ] (name: "vlan-${name}");
+in {
   imports = [
     ./hardware-configuration.nix
     ../../users/handz
@@ -9,7 +11,21 @@
     ./network.nix
   ];
 
-  services.openssh.enable = true;
+  _module.args = { inherit networks; };
+
+  services.openssh = {
+    enable = true;
+    openFirewall = false;
+  };
+
+  networking.firewall.interfaces = {
+    "${networks.servers}" = {
+      allowedTCPPorts = [ 22 ];
+    };
+    "${networks.lan}" = {
+      allowedTCPPorts = [ 22 ];
+    };
+  };
 
   warnings = let
     fw-cfg = config.networking.firewall;

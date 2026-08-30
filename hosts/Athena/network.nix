@@ -1,8 +1,13 @@
-{ config, lib, ... }:
+{ config, lib, networks, ... }:
 
 let
   net-cfg = config.systemd.network;
+  required-networks = lib.attrValues networks;
 in {
+  warnings = required-networks
+    |> lib.filter (name: !net-cfg.netdevs ? "10-${name}")
+    |> lib.map (name: "Network definition for '${name}' was not found in systemd.network.netdevs!");
+
   networking = {
     useDHCP = false;
     dhcpcd.enable = false;
