@@ -77,6 +77,8 @@ in {
             |> lib.map (vname: {
                 VLAN = net-cfg.netdevs."10-${vname}".vlanConfig.Id;
               });
+          # br0 doesn't get or need any ip
+          networkConfig.LinkLocalAddressing = false;
         };
       }
       # Add phys0 to br0
