@@ -6,9 +6,9 @@
     ../../users/handz
     ../../modules/zramSwap.nix
     ./pihole.nix
+    ./network.nix
   ];
 
-  networking.networkmanager.enable = true;
   services.openssh.enable = true;
 
   nix.settings = {
