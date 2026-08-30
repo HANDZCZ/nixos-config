@@ -9,6 +9,7 @@ in {
     ../../modules/zramSwap.nix
     ./pihole.nix
     ./network.nix
+    ./VM.nix
   ];
 
   _module.args = { inherit networks; };
