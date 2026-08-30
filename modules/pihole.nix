@@ -11,9 +11,7 @@ in {
 
   config.services.pihole-ftl = {
     enable = true;
-    openFirewallDNS' = lib.mkDefault true;
     openFirewallDNS = lib.mkForce false;
-    openFirewallWebserver = lib.mkDefault true;
     lists = [
       {
         url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts";
