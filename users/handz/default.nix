@@ -111,6 +111,9 @@ in {
     isNormalUser = true;
     initialPassword = "secure_tm";
     extraGroups = [ "wheel" "networkmanager" "gamemode" "libvirtd" ];
+    openssh.authorizedKeys.keys = [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDG94E3IrE4AEeFateNZAsS9mSm+wmQiZlCvDojFDGVGNyvx0AKGPMAlH+aUG/3zUbjX8ZBlAncxntcH0qDlPV/aHQkZRRM5k+dpa7860Nb5rSa0ILoDoc9zl18Ptkp0qG+/KSw4R+Xu0jlHpYPa3Cgl2v+YSxYywFOMu6oZ21Iunv3KYFbiKumvwIKsUT0YhrTq8U9GyY9PBElT4aBV/AFGiwgY4KaaVTNt49R9gbtZ36yOAX9gCO+/ceEgUE7F3W4K/r2oYpbXAfcTxnCDk7NGpsThD1/mk2bQSNdu3AR6H7VYYHK4FM43Cq91nmQOeAT5Qd2UiZBwuRbE0iiruc50IgYiQh5J41CFxSEqjI5TIi1LViuQ7obMtSg7+hfkIYhfMtdpxAhk6nk3jwmCyRpkJ/P5cS0qcGUUXxM3bikW/8qk1ChDNpJWJOsS/yu6L4oLYezdrqznFut62KI57w32T9HATyEb39NGphAfvAfope17RGK4HZ5mHiEJyXzGgc= handz@DESKTOP-1OPEM0P"
+    ];
     packages = with pkgs; [];
   };
 
