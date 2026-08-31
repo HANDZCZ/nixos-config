@@ -121,7 +121,22 @@
       };
     };
 
-    deploy.nodes = {};
+    deploy.nodes = let
+      activateNixos = name: let
+        nixos-config = self.nixosConfigurations.${name};
+        arch = nixos-config.config.nixpkgs.hostPlatform.system;
+      in deploy-rs.lib.${arch}.activate.nixos nixos-config;
+    in {
+      Athena = {
+        hostname = "10.10.0.25";
+        profiles.system = {
+          user = "root";
+          sshUser = "handz";
+          interactiveSudo = true;
+          path = activateNixos "Athena";
+        };
+      };
+    };
 
     checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
   };
