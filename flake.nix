@@ -84,6 +84,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
+
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "";
+      };
+    };
   };
 
   nixConfig = {
@@ -99,7 +107,7 @@
     ];
   };
 
-  outputs = inputs: {
+  outputs = { self, deploy-rs, ... }@inputs: {
     nixosConfigurations = let
       inherit (import ./hosts { inherit inputs; }) mkHostConfig;
     in {
@@ -112,5 +120,9 @@
         host-info.hostName = "Athena";
       };
     };
+
+    deploy.nodes = {};
+
+    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
   };
 }
