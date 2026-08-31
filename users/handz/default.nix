@@ -1,10 +1,11 @@
-{ config, lib, pkgs, pkgs-unstable, host-info, ... }:
+{ inputs, config, lib, pkgs, pkgs-unstable, host-info, ... }:
 
 let
   user-info = {
     name = "handz";
   };
 
+  system-arch = pkgs.stdenv.hostPlatform.system;
   hm-config = config.home-manager.users.${user-info.name};
 
   per-host-modules = rec {
@@ -69,6 +70,8 @@ let
           ];
 
           home.packages = with pkgs; [
+            inputs.deploy-rs.packages.${system-arch}.deploy-rs
+
             # Misc
             pkgs-unstable.signal-desktop
             qbittorrent
