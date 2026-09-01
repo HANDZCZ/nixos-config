@@ -16,7 +16,9 @@
       #misc.readOnly = false;
       dns = {
         upstreams = [ "127.0.0.1#1053" ];
-        revServers = [];
+        revServers = [
+          "true,10.10.0.0/16,10.10.5.1,lan"
+        ];
         hosts = [];
         cnameRecords = [];
         interface = "${networks.servers}";
