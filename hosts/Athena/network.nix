@@ -20,6 +20,7 @@ in {
     enable = true;
 
     links = {
+      # Rename interface to phys0
       "10-phys0" = {
         matchConfig.PermanentMACAddress = "2a:6e:95:4e:27:54";
         linkConfig.Name = "phys0";
@@ -95,11 +96,11 @@ in {
         };
       };
     in lib.mkMerge [
-      # Device assignment
-      # Add vlans and allow vlan ids for them in br0
+      # Configure br0
       {
-        "20-vlans" = rec {
+        "20-br0" = rec {
           matchConfig.Name = "br0";
+          # Add vlans and allow vlan ids for them
           vlan = [ "vlan-servers" "vlan-lan" "vlan-iot-net" ];
           bridgeVLANs = vlan
             |> lib.map (vname: {
@@ -115,11 +116,11 @@ in {
           matchConfig.Name = "phys0";
           networkConfig.Bridge = "br0";
           # allow all vlans from bridge through this interface
-          bridgeVLANs = net-cfg.networks."20-vlans".bridgeVLANs;
+          bridgeVLANs = net-cfg.networks."20-br0".bridgeVLANs;
         };
       }
 
-      # Configure devices
+      # Configure vlans
       (mkConfVlan "servers")
       {
         "30-vlan-servers".routes = [{
@@ -135,7 +136,7 @@ in {
   };
 
   networking.nftables = let
-    # Marks incoming traffic with vlan specific mark if the traffic belongs to it
+    # Marks incoming traffic with vlan specific mark if the traffic belongs to it and doesn't have a mark
     mkVlanMark = name:
       ''ct mark 0 iifname "vlan-${name}" ct mark set ${toString (net-cfg.netdevs."10-vlan-${name}".vlanConfig.Id + vlan-offset)}'';
   in {
