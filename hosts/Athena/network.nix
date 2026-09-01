@@ -120,13 +120,6 @@ in {
       }
 
       # Configure devices
-      /*{
-        "30-vlan-servers" = {
-          matchConfig.Name = "vlan-servers";
-          networkConfig.DHCP = "ipv4";
-          #dhcpV4Config.RouteMetric = 512;
-        };
-      }*/
       (mkConfVlan "servers")
       {
         "30-vlan-servers".routes = [{
