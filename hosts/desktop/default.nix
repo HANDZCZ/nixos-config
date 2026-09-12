@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -13,43 +13,8 @@
 
   powerManagement.cpuFreqGovernor = "performance";
   kernel.ntsync.enable = true;
-  boot.kernelPackages = let
-    system = pkgs.stdenv.hostPlatform.system;
-    kernel-flake = inputs.nix-cachyos-kernel;
-    kernel-nixpkgs = import kernel-flake.inputs.nixpkgs {
-      inherit system;
-      config = {
-        allowUnfree = true;
-        allowInsecurePredicate = _: true;
-      };
-    };
-    kernel-pkgs = kernel-flake.legacyPackages.${system};
-    helpers = kernel-nixpkgs.callPackage "${kernel-flake.outPath}/helpers.nix" {};
 
-    kernel = kernel-pkgs.linux-cachyos-bore-lto-x86_64-v3;
-
-    kernel-with-ccache = kernel.override (prev: if !config.programs.ccache.enable then {} else rec {
-      stdenv = pkgs.ccacheStdenv.override {
-        stdenv = helpers.stdenvLLVM;
-      };
-      extraMakeFlags = [
-        "CC=${stdenv.cc}/bin/clang"
-        # NOTE: setting LD (maybe HOSTLD too) causes error: ld.lld: error: The setup header has the wrong offset!
-        #       even though wrapped variant of it exists
-        #"LD=${stdenv.cc}/bin/ld.lld"
-        #"HOSTLD=${stdenv.cc}/bin/ld.lld"
-        "AR=${stdenv.cc}/bin/ar"
-        "HOSTAR=${stdenv.cc}/bin/ar"
-        "NM=${stdenv.cc}/bin/nm"
-        "STRIP=${stdenv.cc}/bin/strip"
-        "OBJCOPY=${stdenv.cc}/bin/objcopy"
-        "OBJDUMP=${stdenv.cc}/bin/objdump"
-        "READELF=${stdenv.cc}/bin/readelf"
-        "HOSTCC=${stdenv.cc}/bin/clang"
-        "HOSTCXX=${stdenv.cc}/bin/clang++"
-      ];
-    });
-  in helpers.kernelModuleLLVMOverride (kernel-nixpkgs.linuxKernel.packagesFor kernel-with-ccache);
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v3;
 
   boot.kernelParams = [
     "video=DP-2:2560x1440@180"
