@@ -57,7 +57,7 @@
   };
 
   programs.ccache = {
-    enable = true;
+    enable = false;
     cacheDir = "/var/cache/ccache";
     # NOTE: disable compression and use btrfs compression instead - no double compress
     #       enable file_clone to take advantage of btrfs CoW
