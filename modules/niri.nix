@@ -1,8 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
-{
+let
+  niri-nix-pkgs = inputs.niri-nix.packages.${pkgs.stdenv.hostPlatform.system};
+in {
   environment.systemPackages = with pkgs; [
-    xwayland-satellite
+    niri-nix-pkgs.xwayland-satellite-unstable
     alacritty
     wev
   ];

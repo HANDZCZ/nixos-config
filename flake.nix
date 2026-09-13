@@ -77,7 +77,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         niri-unstable.follows = "";
-        xwayland-satellite-unstable.follows = "";
       };
     };
 
