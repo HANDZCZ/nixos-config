@@ -22,8 +22,12 @@ in {
         description = "https://oisd.nl/";
       }
       {
-        url = "https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/regex.list";
-        description = "PiHole Blocklist SmartTV https://github.com/Perflyst/PiHoleBlocklist/";
+        url = "https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt";
+        description = "Blocklist SmartTV https://github.com/Perflyst/PiHoleBlocklist/";
+      }
+      {
+        url = "https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/refs/heads/master/android-tracking.txt";
+        description = "Blocklist Android Tracking https://github.com/Perflyst/PiHoleBlocklist/";
       }
       {
         url = "https://raw.githubusercontent.com/bongochong/CombinedPrivacyBlockLists/master/newhosts-final.hosts";
