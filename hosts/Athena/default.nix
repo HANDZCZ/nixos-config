@@ -19,11 +19,9 @@ in {
     openFirewall = false;
   };
 
-  networking.interfaces.phys0.wakeOnLan = {
-    enable = true;
-    policy = [ "magic" ];
+  systemd.network.links."10-phys0" = {
+    linkConfig.WakeOnLan = "magic";
   };
-
 
   networking.firewall.interfaces = {
     # 22 - ssh
