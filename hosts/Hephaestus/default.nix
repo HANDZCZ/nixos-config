@@ -52,30 +52,13 @@ in {
 
   _module.args = { inherit networks; };
 
-  systemd.network = {
-    symm-net = {
-      enable = true;
-      microvm.enable = true;
-      links = {
-        phys0.permanentMac = "ec:f4:bb:f0:5d:f5";
-      };
-      networks = network-defs;
+  systemd.network.symm-net = {
+    enable = true;
+    microvm.enable = true;
+    links = {
+      phys0.permanentMac = "ec:f4:bb:f0:5d:f5";
     };
-    links."10-phys-bak" = {
-      matchConfig.PermanentMACAddress = "ec:f4:bb:f0:5d:f4";
-      linkConfig.Name = "phys-bak";
-    };
-    netdevs."10-br0" = {
-      bridgeConfig.STP = true;
-    };
-    networks."20-phys-bak-br0" = {
-      matchConfig.Name = "phys-bak";
-      networkConfig.Bridge = "br0";
-      bridgeVLANs = [{
-        PVID = networks.servers.vlan;
-        EgressUntagged = networks.servers.vlan;
-      }];
-    };
+    networks = network-defs;
   };
 
   services.openssh = {
