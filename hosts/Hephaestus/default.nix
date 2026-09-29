@@ -46,6 +46,7 @@ in {
     ../../users/handz
     ../../modules/zramSwap.nix
     ../../modules/symmetric-networkd-dhcp-single-br.nix
+    ../../modules/warn-open-ports.nix
     ./VM.nix
   ];
 
