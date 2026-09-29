@@ -72,8 +72,8 @@ rec {
       # following configuration is added only when building VM with build-vm
       virtualisation.vmVariant = {
         virtualisation = {
-          memorySize =  8192; # MiB
-          cores = 6;
+          memorySize = lib.mkDefault 8192; # MiB
+          cores = lib.mkDefault 6;
         };
       };
     })
