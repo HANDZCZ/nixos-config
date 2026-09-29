@@ -122,6 +122,11 @@
         folder = "Athena";
         host-info.hostName = "Athena";
       };
+
+      Hephaestus = mkHostConfig {
+        folder = "Hephaestus";
+        host-info.hostName = "Hephaestus";
+      };
     };
 
     deploy.nodes = let
