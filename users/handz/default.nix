@@ -105,6 +105,7 @@ let
     ];
 
     Athena = _shared_servers;
+    Hephaestus = _shared_servers;
   };
 in {
   imports = per-host-modules.${host-info.hostName};
