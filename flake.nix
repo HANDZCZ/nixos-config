@@ -144,6 +144,15 @@
           path = activateNixos "Athena";
         };
       };
+      Hephaestus = {
+        hostname = "192.168.0.20";
+        profiles.system = {
+          user = "root";
+          sshUser = "handz";
+          interactiveSudo = true;
+          path = activateNixos "Hephaestus";
+        };
+      };
     };
 
     checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
