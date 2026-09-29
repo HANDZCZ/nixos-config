@@ -80,6 +80,17 @@ in {
 
   services.openssh = {
     enable = true;
+    openFirewall = false;
+  };
+
+  networking.firewall.interfaces = {
+    # 22 - ssh
+    "${networks.servers.interface}" = {
+      allowedTCPPorts = [ 22 ];
+    };
+    "${networks.lan.interface}" = {
+      allowedTCPPorts = [ 22 ];
+    };
   };
 
   nix.settings = {
