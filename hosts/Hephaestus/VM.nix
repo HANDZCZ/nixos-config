@@ -9,6 +9,9 @@ in {
       cores = 12;
     };
 
+    # no ipmi in a vm
+    services.dell-fancontrol.enable = lib.mkForce false;
+
     virtualisation.qemu.networkingOptions = let
         mkEth = num: mac: [
           "-device virtio-net-pci,netdev=net${toString num},mac=${mac}"

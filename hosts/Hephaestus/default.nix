@@ -52,6 +52,8 @@ in {
 
   _module.args = { inherit networks; };
 
+  services.dell-fancontrol.enable = true;
+
   systemd.network.symm-net = {
     enable = true;
     microvm.enable = true;
