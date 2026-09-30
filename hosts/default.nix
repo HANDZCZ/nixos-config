@@ -16,6 +16,7 @@ rec {
     ../modules/ntsync.nix
     ../modules/ccache.nix
     ../modules/tz_locale.nix
+    ../modules/dell-fancontrol.nix
     # Misc
     ({ pkgs, pkgs-unstable, lib, host-info, ... }: {
       imports = [
