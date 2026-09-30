@@ -106,4 +106,107 @@ rec {
       { nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; }
     ] ++ modules;
   };
+
+  mkMicrovmConfig = {
+    host-info,
+    root ? {},
+    networks,
+    config ? {},
+  }: { lib, ... }: {
+    imports = [
+      inputs.microvm.nixosModules.microvm
+      config
+    ];
+
+    _module.args = {
+      inherit host-info inputs;
+      networks = networks
+        |> lib.mapAttrs (name: val: {
+          interface = name;
+        });
+    };
+
+    systemd.network = {
+      enable = true;
+
+      # Rename interfaces
+      links = networks |> lib.mapAttrs' (key: val: lib.nameValuePair "10-${key}" {
+        matchConfig.PermanentMACAddress = val.mac;
+        linkConfig.Name = key;
+      });
+    };
+
+    services.openssh = {
+      enable = true;
+      # By default allow access from host through VSOCK only
+      openFirewall = lib.mkDefault false;
+    };
+
+    users.users.root = {
+      password = lib.mkIf (root ? password) root.password;
+      openssh.authorizedKeys.keys = lib.mkIf (root ? authorizedKeys) root.authorizedKeys;
+    };
+
+    services.openssh.settings = lib.mkIf (root ? sshWithPass && root.sshWithPass) {
+      PermitRootLogin = "yes";
+      PasswordAuthentication = true;
+    };
+
+    # Reduce journal size
+    services.journald = {
+      extraConfig = ''
+        Storage=persistent
+        SystemMaxUse=128M
+        SystemMaxFileSize=16M
+        SystemMaxFiles=8
+        RuntimeMaxUse=16M
+        RuntimeMaxFileSize=4M
+        Compress=yes
+        MaxRetentionSec=7d
+      '';
+      rateLimitBurst = 2000;
+    };
+
+    microvm = {
+      vsock.cid = host-info.hostName
+        |> lib.hashString "sha256"
+        |> lib.substring 0 8
+        |> lib.fromHexString;
+      hypervisor = lib.mkDefault "cloud-hypervisor";
+      mem = lib.mkDefault 512;
+      hotplugMem = lib.mkDefault 2048;
+      hotpluggedMem = lib.mkDefault 0;
+      balloon = lib.mkDefault true;
+      deflateOnOOM = true;
+      storeDiskDirect = true;
+      shares = [
+        {
+          proto = "virtiofs";
+          tag = "ro-store";
+          source = "/nix/store";
+          mountPoint = "/nix/.ro-store";
+          readOnly = true;
+        }
+        {
+          proto = "virtiofs";
+          tag = "journal";
+          source = "/var/lib/microvms/${host-info.hostName}/journal";
+          mountPoint = "/var/log/journal";
+        }
+      ];
+      interfaces = networks
+        |> lib.attrValues
+        |> lib.map (net:
+          lib.removeAttrs net [ "mkId" ]
+            // (
+              if net ? mkId
+                then { id = net.mkId host-info.hostName; }
+                else {}
+            )
+        );
+    };
+
+    networking.hostName = host-info.hostName;
+    system.stateVersion = "25.11";
+  };
 }
