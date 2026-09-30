@@ -95,6 +95,12 @@
         flake-compat.follows = "";
       };
     };
+
+    microvm = {
+      url = "github:HANDZCZ/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   nixConfig = {
