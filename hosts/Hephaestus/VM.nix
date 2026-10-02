@@ -4,6 +4,10 @@ let
   net-cfg = config.systemd.network;
 in {
   virtualisation.vmVariant = {
+    boot = {
+      blacklistedKernelModules = [ "kvm-intel" ];
+      kernelModules = [ "kvm-amd" ];
+    };
     virtualisation = {
       memorySize = 16384; # MiB
       cores = 12;
