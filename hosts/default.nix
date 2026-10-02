@@ -115,6 +115,7 @@ rec {
     root ? {},
     networks ? {},
     config ? {},
+    share-store ? true,
   }: { lib, ... }: {
     imports = [
       inputs.microvm.nixosModules.microvm
@@ -185,18 +186,18 @@ rec {
       shares = [
         {
           proto = "virtiofs";
-          tag = "ro-store";
-          source = "/nix/store";
-          mountPoint = "/nix/.ro-store";
-          readOnly = true;
-        }
-        {
-          proto = "virtiofs";
           tag = "journal";
           source = "/var/lib/microvms/${host-info.hostName}/journal";
           mountPoint = "/var/log/journal";
         }
-      ];
+      ]
+      ++ lib.optional share-store {
+        proto = "virtiofs";
+        tag = "ro-store";
+        source = "/nix/store";
+        mountPoint = "/nix/.ro-store";
+        readOnly = true;
+      };
       interfaces = networks
         |> lib.attrValues
         |> lib.map (net:
