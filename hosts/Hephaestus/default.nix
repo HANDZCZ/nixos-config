@@ -5,11 +5,6 @@ let
     servers = {
       mac = "2a:69:d7:4a:e4:3e";
       vlan = 5;
-    };
-    lan = {
-      mac = "2a:ae:d8:82:6c:dc";
-      vlan = 10;
-      # FIXME: once servers net is up use that
       extraNetworksConfig = {
         routes = [{
           Gateway = "_dhcp4";
@@ -18,6 +13,10 @@ let
           Metric = 512;
         }];
       };
+    };
+    lan = {
+      mac = "2a:ae:d8:82:6c:dc";
+      vlan = 10;
     };
     iot = {
       configure = false;
