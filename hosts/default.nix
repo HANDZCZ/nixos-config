@@ -92,7 +92,10 @@ rec {
   }: let
     pkgs = import inputs.nixpkgs {
       config.allowUnfree = true;
-      inherit system overlays;
+      inherit system;
+      overlays = overlays ++ [
+        (final: prev: { inherit pkgs-unstable; })
+      ];
     };
     pkgs-unstable = import inputs.nixpkgs-unstable {
       config.allowUnfree = true;
