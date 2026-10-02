@@ -113,7 +113,7 @@ rec {
   mkMicrovmConfig = {
     host-info,
     root ? {},
-    networks,
+    networks ? {},
     config ? {},
   }: { lib, ... }: {
     imports = [
