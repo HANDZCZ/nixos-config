@@ -38,6 +38,14 @@ let
       // (if cfg.configure
         then { inherit (cfg) interface; }
         else {})
+    )
+    |> lib.flip lib.recursiveUpdate (let
+      microvm-cfg = config.systemd.network.symm-net.microvm;
+    in
+      if microvm-cfg.enable
+      then microvm-cfg.networks
+        |> lib.mapAttrs (_: val: { microvm = val; })
+      else {}
     );
 in {
   imports = [
