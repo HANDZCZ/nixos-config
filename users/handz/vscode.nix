@@ -1,4 +1,4 @@
-{ pkgs, lib, user-info, ... }:
+{ pkgs, lib, user-info, hm-config, ... }:
 
 {
   home-manager.users.${user-info.name}.programs.vscodium = {
@@ -25,7 +25,7 @@
           iconTheme = "vscode-great-icons";
         };
         editor = {
-          fontFamily = "JetBrainsMono Nerd Font";
+          fontFamily = lib.head hm-config.fonts.fontconfig.defaultFonts.monospace;
           fontLigatures = true;
           fontSize = 16;
           stickyScroll.enabled = false;
