@@ -157,6 +157,7 @@
           user = "root";
           sshUser = "handz";
           interactiveSudo = true;
+          fastConnection = true;
           path = activateNixos "Hephaestus";
         };
       };
