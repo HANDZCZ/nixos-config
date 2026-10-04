@@ -137,7 +137,6 @@
         silentTyping.enable = true;
         startupTimings.enable = true;
         stickerPaste.enable = true;
-        summaries.enable = true;
         themeAttributes.enable = true;
         translate = {
           enable = true;
