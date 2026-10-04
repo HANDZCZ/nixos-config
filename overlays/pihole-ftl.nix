@@ -1,13 +1,19 @@
 final: prev: {
-  # Pin pihole to version with DNSSEC fix: https://github.com/pi-hole/FTL/tree/fix/dnssec-empty-ds-rfc1918-2942
+  # Patch pihole so DNSSEC in rev routes does not return SERVFAIL
   # issue: https://github.com/pi-hole/FTL/issues/2942
   pihole-ftl = prev.pihole-ftl.overrideAttrs (finalAttrs: prevAttrs: {
     patches = (prevAttrs.patches or []) ++ [
-      # Need to use diff because nixos/modules/services/networking/pihole-ftl.nix depends on src.tag
+      # prerequisite update
       (prev.fetchpatch2 {
-        name = "Fix-dnssec-empty-ds-rfc1918-2942.diff";
-        url = "https://github.com/pi-hole/FTL/compare/v6.7...fix/dnssec-empty-ds-rfc1918-2942.diff?full_index=1";
-        hash = "sha256-VhvNqif2cMYOcCnfSR+o356GMLD3X3B6bYDVuVfuH9A=";
+        name = "Pihole-ftl-update-dnsmasq-to-v2.93+16.diff";
+        url = "https://patch-diff.githubusercontent.com/raw/pi-hole/FTL/pull/3018.diff?full_index=1";
+        hash = "sha256-cjvOORWoC+eLftMXGspfnO7DqvxPpU7R8NeIk55jvwM=";
+      })
+      # update caring the fix
+      (prev.fetchpatch2 {
+        name = "Pihole-ftl-update-dnsmasq-to-v2.93+30.diff";
+        url = "https://patch-diff.githubusercontent.com/raw/pi-hole/FTL/pull/3103.diff?full_index=1";
+        hash = "sha256-SKsvzwQ0QlPtJKdp4dMpp4iOi6vRi0Ft+u1Te3OBago=";
       })
     ];
   });
