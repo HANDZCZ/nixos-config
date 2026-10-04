@@ -116,7 +116,7 @@ rec {
     networks ? {},
     config ? {},
     share-store ? true,
-  }: { lib, ... }: {
+  }: { lib, pkgs, ... }: {
     imports = [
       inputs.microvm.nixosModules.microvm
       config
@@ -124,6 +124,7 @@ rec {
 
     _module.args = {
       inherit host-info inputs;
+      pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
       networks = networks
         |> lib.mapAttrs (name: val: {
           interface = name;
