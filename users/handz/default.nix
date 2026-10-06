@@ -11,6 +11,7 @@ let
   per-host-modules = rec {
     _shared = [
       ./bash.nix
+      ./btop.nix
       ./alacritty.nix
       ./starship.nix
       ./ssh.nix
@@ -97,6 +98,7 @@ let
 
     _shared_servers = [
       ./bash.nix
+      ./btop.nix
       ./starship.nix
       ./ssh.nix
       ./lazygit.nix
@@ -131,7 +133,6 @@ in {
 
     home.packages = with pkgs; [
       # basic utils
-      btop
       htop
       fastfetch
       eza
