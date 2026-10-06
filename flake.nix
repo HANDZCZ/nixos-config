@@ -137,6 +137,17 @@
         folder = "Hephaestus";
         host-info.hostName = "Hephaestus";
       };
+
+      # ------ VMS ------
+      hydra-vm = mkHostConfig {
+        folder = "vms/hydra";
+        host-info = {
+          hostName = "Hydra";
+          vm-name = "hydra-vm";
+        };
+        # TODO: Hydra is broken on stable
+        nixpkgs = inputs.nixpkgs-unstable;
+      };
     };
 
     deploy.nodes = let
