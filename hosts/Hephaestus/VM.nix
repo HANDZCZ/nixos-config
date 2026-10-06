@@ -9,7 +9,8 @@ in {
       kernelModules = [ "kvm-amd" ];
     };
     virtualisation = {
-      memorySize = 16384; # MiB
+      diskSize = 60 * 1024;
+      memorySize = 16384;
       cores = 12;
     };
 
