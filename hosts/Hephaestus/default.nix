@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 
 let
   network-defs = {
@@ -56,6 +56,7 @@ in {
     ../../modules/warn-open-ports.nix
     ./VM.nix
     ./microvms
+    ./incus
   ];
 
   _module.args = { inherit networks; };
