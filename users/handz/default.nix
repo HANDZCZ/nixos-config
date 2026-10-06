@@ -108,9 +108,18 @@ let
 
     Athena = _shared_servers;
     Hephaestus = _shared_servers;
+
+    # ------ VMS ------
+    _vms = [
+      ./btop.nix
+    ];
   };
 in {
-  imports = per-host-modules.${host-info.hostName};
+  imports = if per-host-modules ? "${host-info.hostName}"
+    then per-host-modules.${host-info.hostName}
+    else if host-info ? vm-name
+      then per-host-modules._vms
+      else throw "User ${user-info.name}: User config for host ${host-info.hostName} not found.";
   _module.args = { inherit user-info hm-config; };
 
   users.users.${user-info.name} = {
