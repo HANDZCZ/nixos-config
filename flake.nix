@@ -119,7 +119,10 @@
 
   outputs = { self, deploy-rs, ... }@inputs: {
     nixosConfigurations = let
-      inherit (import ./hosts { inherit inputs; }) mkHostConfig;
+      inherit (import ./hosts {
+        flake = self;
+        inherit inputs;
+      }) mkHostConfig;
     in {
       nixos-desktop = mkHostConfig { folder = "desktop"; };
       nixos-laptop = mkHostConfig { folder = "laptop"; };

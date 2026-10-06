@@ -1,5 +1,6 @@
 {
   inputs,
+  flake,
 }:
 
 rec {
@@ -104,7 +105,7 @@ rec {
     };
   in nixpkgs.lib.nixosSystem {
     inherit pkgs;
-    specialArgs = { inherit inputs pkgs-unstable host-info; };
+    specialArgs = { inherit inputs pkgs-unstable host-info flake; };
     modules = [
       ./${folder}
       { nix.nixPath = [ "nixpkgs=${nixpkgs}" ]; }
@@ -124,7 +125,7 @@ rec {
     ];
 
     _module.args = {
-      inherit host-info inputs;
+      inherit host-info inputs flake;
       pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
       networks = networks
         |> lib.mapAttrs (name: val: {

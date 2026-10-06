@@ -1,7 +1,7 @@
-{ inputs, lib, ... }:
+{ inputs, lib, flake, ... }:
 
 let
-  inherit (import ../../default.nix { inherit inputs; }) mkMicrovmConfig;
+  inherit (import ../../default.nix { inherit inputs flake; }) mkMicrovmConfig;
   mkNet = {
     net,
     mac,
