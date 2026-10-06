@@ -143,7 +143,7 @@ rec {
     };
 
     services.openssh = {
-      enable = true;
+      enable = lib.mkDefault true;
       # By default allow access from host through VSOCK only
       openFirewall = lib.mkDefault false;
     };
@@ -189,7 +189,7 @@ rec {
         {
           proto = "virtiofs";
           tag = "journal";
-          source = "/var/lib/microvms/${host-info.hostName}/journal";
+          source = "/var/lib/microvms/${host-info.vm-name}/journal";
           mountPoint = "/var/log/journal";
         }
       ]
