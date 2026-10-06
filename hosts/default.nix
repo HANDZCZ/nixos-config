@@ -88,9 +88,10 @@ rec {
     },
     overlays ? default_overlays,
     modules ? default_modules,
+    nixpkgs ? inputs.nixpkgs,
     ...
   }: let
-    pkgs = import inputs.nixpkgs {
+    pkgs = import nixpkgs {
       config.allowUnfree = true;
       inherit system;
       overlays = overlays ++ [
@@ -101,12 +102,12 @@ rec {
       config.allowUnfree = true;
       inherit system;
     };
-  in inputs.nixpkgs.lib.nixosSystem {
+  in nixpkgs.lib.nixosSystem {
     inherit pkgs;
     specialArgs = { inherit inputs pkgs-unstable host-info; };
     modules = [
       ./${folder}
-      { nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; }
+      { nix.nixPath = [ "nixpkgs=${nixpkgs}" ]; }
     ] ++ modules;
   };
 
