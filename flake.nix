@@ -175,6 +175,18 @@
           path = activateNixos "Hephaestus";
         };
       };
+
+      # ------ VMS ------
+      hydra-vm = {
+        hostname = "192.168.5.22";
+        profiles.system = {
+          user = "root";
+          sshUser = "handz";
+          interactiveSudo = true;
+          fastConnection = true;
+          path = activateNixos "hydra-vm";
+        };
+      };
     };
 
     checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
