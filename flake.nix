@@ -142,7 +142,7 @@
     deploy.nodes = let
       activateNixos = name: let
         nixos-config = self.nixosConfigurations.${name};
-        arch = nixos-config.config.nixpkgs.hostPlatform.system;
+        arch = nixos-config.config.nixpkgs.pkgs.stdenv.hostPlatform.system;
       in deploy-rs.lib.${arch}.activate.nixos nixos-config;
     in {
       Athena = {
