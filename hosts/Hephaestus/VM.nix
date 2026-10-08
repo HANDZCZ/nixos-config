@@ -2,6 +2,8 @@
 
 let
   net-cfg = config.systemd.network;
+  microvms = [
+  ];
 in {
   virtualisation.vmVariant = {
     boot = {
@@ -13,6 +15,15 @@ in {
       memorySize = 16384;
       cores = 12;
     };
+
+    microvm.vms = lib.attrNames config.microvm.vms
+      |> lib.filter (name: !lib.elem name microvms)
+      |> lib.map (name: {
+        ${name} = {
+          autostart = lib.mkForce false;
+        };
+      })
+      |> lib.mergeAttrsList;
 
     # no ipmi in a vm
     services.dell-fancontrol.enable = lib.mkForce false;
