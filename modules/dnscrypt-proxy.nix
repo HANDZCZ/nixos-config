@@ -59,7 +59,7 @@ in {
       require_dnssec = true;
       require_nolog = true;
       require_nofilter = true;
-      block_ipv6 = cfg.ipv6Support;
+      #block_ipv6 = !cfg.ipv6Support;
       cache = cfg.useCache;
       anonymized_dns = {
         skip_incompatible = true;
