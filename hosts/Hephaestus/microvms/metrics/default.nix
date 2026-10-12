@@ -1,4 +1,4 @@
-{ vm-name, mkMicrovmConfig, mkNet, root-conf, ... }:
+{ vm-name, mkMicrovmConfig, mkNet, root-conf, prometheus-cfg, ... }:
 { config, lib, networks, ... }:
 
 let
@@ -23,6 +23,11 @@ in {
         imports = [
           ./prometheus-daemon.nix
         ];
+
+        services.prometheus = {
+          # Add scrape configs for other services
+          inherit (prometheus-cfg) scrapeConfigs;
+        };
 
         microvm = {
           vcpu = 4;
