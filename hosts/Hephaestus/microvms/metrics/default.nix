@@ -21,6 +21,7 @@ in {
       ];
       config = { ... }: {
         imports = [
+          ./prometheus-daemon.nix
         ];
 
         microvm = {
