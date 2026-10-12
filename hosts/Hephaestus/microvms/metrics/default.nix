@@ -22,6 +22,7 @@ in {
       config = { ... }: {
         imports = [
           ./prometheus-daemon.nix
+          ./grafana.nix
         ];
 
         services.prometheus = {
