@@ -12,6 +12,10 @@ let
           Table = "main";
           Metric = 512;
         }];
+        dhcpV4Config = {
+          UseDNS = lib.mkForce true;
+          UseNTP = lib.mkForce true;
+        };
       };
     };
     lan = {
