@@ -37,7 +37,7 @@ let
       static_configs = [
         {
           targets = [
-            "${config.networking.hostName}:${toString config.services.prometheus.exporters.node.port}"
+            "${config.networking.hostName}.lan:${toString config.services.prometheus.exporters.node.port}"
           ];
         }
       ];
@@ -49,7 +49,7 @@ let
           targets = config.microvm.vms
             |> lib.mapAttrsToList (name: cfg: let
                 vm-cfg = cfg.config.config;
-              in "${vm-cfg.networking.hostName}:${toString vm-cfg.services.prometheus.exporters.node.port}"
+              in "${vm-cfg.networking.hostName}.lan:${toString vm-cfg.services.prometheus.exporters.node.port}"
             );
         }
       ];
