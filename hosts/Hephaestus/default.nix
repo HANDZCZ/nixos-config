@@ -61,6 +61,7 @@ in {
     ./VM.nix
     ./microvms
     ./incus
+    ./metrics.nix
   ];
 
   _module.args = { inherit networks; };

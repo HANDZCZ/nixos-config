@@ -33,6 +33,16 @@ let
   # FIXME: use more robust discovery mechanism than hostname from dhcp
   prometheus-cfg.scrapeConfigs = [
     {
+      job_name = "host-node";
+      static_configs = [
+        {
+          targets = [
+            "${config.networking.hostName}:${toString config.services.prometheus.exporters.node.port}"
+          ];
+        }
+      ];
+    }
+    {
       job_name = "microvms-node";
       static_configs = [
         {
