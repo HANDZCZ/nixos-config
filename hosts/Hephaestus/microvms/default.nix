@@ -20,11 +20,22 @@ let
     password = "root";
   };
 
+  # Add default prometheus node exporter to all microvms
+  mkMicrovmConfig' = { config, ... }@args: mkMicrovmConfig (args // {
+    config = {
+      imports = [
+        config
+        ./metrics/node-exporter.nix
+      ];
+    };
+  });
+
   vms = builtins.readDir ./.
     |> lib.flip removeAttrs [ "default.nix" ]
     |> lib.mapAttrsToList (name: value: import ./${name} {
       vm-name = name |> lib.removeSuffix ".nix";
-      inherit mkMicrovmConfig mkNet root-conf;
+      mkMicrovmConfig = mkMicrovmConfig';
+      inherit mkNet root-conf;
     });
 in {
   imports = [
