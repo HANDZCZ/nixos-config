@@ -33,6 +33,10 @@ in {
         credential.helper = "store";
         core.autocrlf = false;
         gpg.ssh.allowedSignersFile = "~/.config/git/allowed-signers";
+        merge = {
+          conflictStyle = "diff3";
+          ff = false;
+        };
       };
       signing = {
         format = "ssh";
