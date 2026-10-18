@@ -25,7 +25,8 @@ let
     config = {
       imports = [
         config
-        ./metrics/node-exporter.nix
+        # Add default prometheus node exporter to all microvms
+        ../../../modules/microvm/node-exporter.nix
       ];
     };
   });
