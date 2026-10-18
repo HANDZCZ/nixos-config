@@ -1,4 +1,4 @@
-{ config, inputs, lib, flake,... }:
+{ config, inputs, lib, flake, the-cfg,... }:
 
 let
   inherit (import ../../default.nix { inherit inputs flake; }) mkMicrovmConfig;
@@ -20,25 +20,29 @@ let
     password = "root";
   };
 
-  # Add default prometheus node exporter to all microvms
   mkMicrovmConfig' = { config, ... }@args: mkMicrovmConfig (args // {
-    config = {
+    config = { host-info, ... }: {
       imports = [
         config
         # Add default prometheus node exporter to all microvms
         ../../../modules/microvm/node-exporter.nix
       ];
+
+      # Add config attrs for vms/hosts/services
+      _module.args = { inherit the-cfg; };
+
+      # Set fqdn for this vm
+      networking.fqdn = lib.head the-cfg.vms.${host-info.vm-name}.domains;
     };
   });
 
-  # FIXME: use more robust discovery mechanism than hostname from dhcp
   prometheus-cfg.scrapeConfigs = [
     {
       job_name = "host-node";
       static_configs = [
         {
           targets = [
-            "${config.networking.hostName}.lan:${toString config.services.prometheus.exporters.node.port}"
+            "${config.networking.fqdn}:${toString config.services.prometheus.exporters.node.port}"
           ];
         }
       ];
@@ -50,7 +54,7 @@ let
           targets = config.microvm.vms
             |> lib.mapAttrsToList (name: cfg: let
                 vm-cfg = cfg.config.config;
-              in "${vm-cfg.networking.hostName}.lan:${toString vm-cfg.services.prometheus.exporters.node.port}"
+              in "${vm-cfg.networking.fqdn}:${toString vm-cfg.services.prometheus.exporters.node.port}"
             );
         }
       ];
