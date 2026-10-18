@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, host-info, ... }:
 
 let
   network-defs = {
@@ -51,6 +51,7 @@ let
         |> lib.mapAttrs (_: val: { microvm = val; })
       else {}
     );
+  the-cfg = import ../../configs/ce.nix { inherit lib; };
 in {
   imports = [
     ./hardware-configuration.nix
@@ -64,7 +65,7 @@ in {
     ./metrics.nix
   ];
 
-  _module.args = { inherit networks; };
+  _module.args = { inherit networks the-cfg; };
 
   services.dell-fancontrol.enable = true;
 
@@ -91,6 +92,8 @@ in {
       allowedTCPPorts = [ 22 ];
     };
   };
+
+  networking.fqdn = lib.head the-cfg.hosts.${host-info.hostName}.domains;
 
   nix.settings = {
     trusted-users = [ "handz" ];
