@@ -1,0 +1,11 @@
+keys:
+  - users:
+      - &handz age1cy3ch29n5x3k5nzafgj854xt29pa2a9chvqwqk8qdrfsxmnxwu5s5nny6n
+  - hosts:
+      - &Hephaestus age13a797z3efwkyla3xf0vz4y7sckz44txengx79sshe47hr2gjv4aq4cg9r4
+creation_rules:
+  - path_regex: secrets/hosts/Hephaestus.yaml$
+    key_groups:
+      - age:
+        - *handz
+        - *Hephaestus
