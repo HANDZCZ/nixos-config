@@ -13,22 +13,17 @@ rec {
     technitium = {
       ip = "192.168.5.5";
       domains = [
-        "dns.${local-domain}"
-        "technitium.lan"
-        "dns-server.lan"
+        "technitium.${local-domain}"
       ];
     };
     paperless.domains = [
       "paperless.${local-domain}"
-      "paperless.lan"
     ];
     prometheus.domains = [
       "prometheus.${local-domain}"
-      "prometheus.lan"
     ];
     grafana.domains = [
       "grafana.${local-domain}"
-      "grafana.lan"
     ];
   };
 
@@ -36,7 +31,6 @@ rec {
     Hephaestus = {
       domains = [
         "hephaestus.${local-domain}"
-        "hephaestus.lan"
       ];
     };
   };
@@ -48,7 +42,6 @@ rec {
     metrics = with services; {
       domains = [
         "metrics.${local-domain}"
-        "metrics.lan"
       ]
         ++ prometheus.domains
         ++ grafana.domains;
