@@ -16,8 +16,9 @@ let
   };
 
   root-conf = {
-    sshWithPass = true;
-    password = "root";
+    authorizedKeys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMcwNg4M4I5wH4Oh2uaTvGDiVOw/kScEXvKzqX+hNKAD root@Hephaestus"
+    ];
   };
 
   mkMicrovmConfig' = { config, ... }@args: mkMicrovmConfig (args // {
