@@ -16,14 +16,31 @@ in {
       cores = 12;
     };
 
-    microvm.vms = lib.attrNames config.microvm.vms
-      |> lib.filter (name: !lib.elem name microvms)
-      |> lib.map (name: {
-        ${name} = {
-          autostart = lib.mkForce false;
-        };
-      })
-      |> lib.mergeAttrsList;
+    microvm.vms = lib.mkMerge [
+      # Disable autostart vms
+      (lib.attrNames config.microvm.vms
+        |> lib.filter (name: !lib.elem name microvms)
+        |> lib.map (name: {
+          ${name} = {
+            autostart = lib.mkForce false;
+          };
+        })
+        |> lib.mergeAttrsList)
+      # Set root config so vm is accessible through ssh
+      (lib.attrNames config.microvm.vms
+        |> lib.map (name: {
+          ${name}.config.config = {
+              users.users.root = {
+                password = "root";
+              };
+              services.openssh.settings = {
+                PermitRootLogin = "yes";
+                PasswordAuthentication = true;
+              };
+            };
+        })
+        |> lib.mergeAttrsList)
+    ];
 
     # no ipmi in a vm
     services.dell-fancontrol.enable = lib.mkForce false;
