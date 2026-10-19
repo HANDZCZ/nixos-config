@@ -18,6 +18,7 @@ rec {
     ../modules/ccache.nix
     ../modules/tz_locale.nix
     ../modules/dell-fancontrol.nix
+    ../modules/ddns-nsupdate.nix
     # Misc
     ({ pkgs, pkgs-unstable, lib, host-info, ... }: {
       imports = [
