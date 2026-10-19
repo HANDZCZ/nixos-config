@@ -63,6 +63,7 @@ in {
     ./microvms
     ./incus
     ./metrics.nix
+    ./sops.nix
   ];
 
   _module.args = { inherit networks the-cfg; };
