@@ -95,6 +95,17 @@ in {
   };
 
   networking.fqdn = lib.head the-cfg.hosts.${host-info.hostName}.domains;
+  services.ddns-nsupdate = {
+    enable = true;
+    domains = the-cfg.hosts.${host-info.hostName}.domains
+      |> lib.map (domain: {
+        ${domain} = {
+          server = the-cfg.dns.primary.ip;
+          key = config.sops.secrets."host/dns-tsig-key".path;
+        };
+      })
+      |> lib.mergeAttrsList;
+  };
 
   nix.settings = {
     trusted-users = [ "handz" ];
