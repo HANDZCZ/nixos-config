@@ -32,6 +32,7 @@ let
             # misc
             mission-center
             yt-dlp
+            sops
 
             # media player
             mpv
