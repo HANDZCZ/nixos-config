@@ -1,6 +1,7 @@
 { config, inputs, lib, flake, the-cfg,... }:
 
 let
+  host-cfg = config;
   inherit (import ../../default.nix { inherit inputs flake; }) mkMicrovmConfig;
   mkNet = {
     net,
@@ -27,6 +28,7 @@ let
         config
         # Add default prometheus node exporter to all microvms
         ../../../modules/microvm/node-exporter.nix
+        ../../../modules/ddns-nsupdate.nix
       ];
 
       # Add config attrs for vms/hosts/services
@@ -34,6 +36,31 @@ let
 
       # Set fqdn for this vm
       networking.fqdn = lib.head the-cfg.vms.${host-info.vm-name}.domains;
+
+      # Add ddns to microvm
+      services.ddns-nsupdate = {
+        enable = true;
+        domains = the-cfg.vms.${host-info.vm-name}.domains
+          |> lib.map (domain: {
+            ${domain} = {
+              server = the-cfg.dns.primary.ip;
+              key = host-cfg.sops.secrets."vms/${host-info.vm-name}/dns-tsig-key".path;
+            };
+          })
+          |> lib.mergeAttrsList;
+      };
+
+      # Mount secrets for this microvm
+      microvm.shares = [
+        rec {
+          proto = "virtiofs";
+          cache = "never";
+          tag = "vm-sops-nix";
+          source = "/run/secrets/vms/${host-info.vm-name}";
+          mountPoint = source;
+          readOnly = true;
+        }
+      ];
     };
   });
 
