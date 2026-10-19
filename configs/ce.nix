@@ -4,9 +4,9 @@ rec {
   local-domain = "ce.handz.eu.org";
 
   dns = {
-    servers = [{
+    primary = {
       inherit (services.technitium) domains ip;
-    }];
+    };
   };
 
   services = {
