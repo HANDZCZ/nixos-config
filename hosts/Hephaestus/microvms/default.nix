@@ -80,6 +80,7 @@ let
 in {
   imports = [
     inputs.microvm.nixosModules.host
+    ../../../modules/stable-secrets.nix
   ] ++ vms;
 
   microvm = {

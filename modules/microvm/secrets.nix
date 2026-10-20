@@ -2,13 +2,14 @@
 
 {
   # Mount secrets for this microvm
+  # NOTE: use the /run/stable-secrets because virtiofsd can't handle secret updates via symlinks
   microvm.shares = [
-    rec {
+    {
       proto = "virtiofs";
       cache = "never";
       tag = "vm-sops-nix";
-      source = "/run/secrets/vms/${host-info.vm-name}";
-      mountPoint = source;
+      source = "/run/stable-secrets/vms/${host-info.vm-name}";
+      mountPoint = "/run/secrets/vms/${host-info.vm-name}";
       readOnly = true;
     }
   ];
