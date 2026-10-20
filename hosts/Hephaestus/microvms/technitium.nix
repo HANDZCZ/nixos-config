@@ -6,7 +6,7 @@ let
 in {
   microvm.vms.${vm-name} = {
     autostart = true;
-    restartIfChanged = true;
+    restartIfChanged = false;
     config = mkMicrovmConfig {
       host-info = {
         hostName = vm-name;
