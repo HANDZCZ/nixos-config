@@ -52,8 +52,8 @@ in {
         };
 
         microvm = {
-          vcpu = 2;
-          mem = 2048;
+          vcpu = 1;
+          mem = 768;
           volumes = [
             rec {
               label = "technitium-data";
