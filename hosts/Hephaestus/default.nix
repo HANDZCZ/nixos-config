@@ -94,7 +94,7 @@ in {
     };
   };
 
-  networking.fqdn = lib.head the-cfg.hosts.${host-info.hostName}.domains;
+  networking.fqdn = the-cfg.hosts.${host-info.hostName}.fqdn;
   services.ddns-nsupdate = {
     enable = true;
     domains = the-cfg.hosts.${host-info.hostName}.domains

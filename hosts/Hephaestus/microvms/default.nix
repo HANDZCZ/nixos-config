@@ -32,9 +32,6 @@ let
         ../../../modules/microvm/ddns.nix
       ];
 
-      # Set fqdn for this vm
-      networking.fqdn = lib.head the-cfg.vms.${host-info.vm-name}.domains;
-
       _module.args = {
         inherit
           # Add config attrs for vms/hosts/services
@@ -43,6 +40,8 @@ let
           host-cfg;
       };
 
+      # Set fqdn for this vm
+      networking.fqdn = the-cfg.vms.${host-info.vm-name}.fqdn;
     };
   });
 

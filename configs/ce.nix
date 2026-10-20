@@ -28,20 +28,27 @@ rec {
   };
 
   hosts = {
-    Hephaestus = {
+    Hephaestus = rec {
+      fqdn = "hephaestus.${local-domain}";
       domains = [
-        "hephaestus.${local-domain}"
+        fqdn
       ];
     };
   };
 
   vms = {
-    inherit (services)
-      technitium
-      paperless;
-    metrics = with services; {
-      domains = [
-        "metrics.${local-domain}"
+    technitium = rec {
+      fqdn = lib.head domains;
+      domains = services.technitium.domains;
+    };
+    paperless = rec {
+      fqdn = lib.head domains;
+      domains = services.paperless.domains;
+    };
+    metrics = rec {
+      fqdn = "metrics.${local-domain}";
+      domains = with services; [
+        fqdn
       ]
         ++ prometheus.domains
         ++ grafana.domains;
