@@ -59,6 +59,7 @@ in {
     ../../modules/zramSwap.nix
     ../../modules/symmetric-networkd-dhcp-single-br.nix
     ../../modules/warn-open-ports.nix
+    ../../modules/zfs-kernel-check.nix
     ./VM.nix
     ./microvms
     ./incus
