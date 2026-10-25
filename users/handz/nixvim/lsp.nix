@@ -12,7 +12,7 @@
               nix = {
                 maxMemoryMB = 12 * 1024;
                 flake = {
-                  autoEvalInputs = true;
+                  autoEvalInputs = false;
                   nixpkgsInputName = "nixpkgs";
                 };
               };
