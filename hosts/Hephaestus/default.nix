@@ -65,6 +65,7 @@ in {
     ./incus
     ./metrics.nix
     ./sops.nix
+    ./zfs.nix
   ];
 
   _module.args = { inherit networks the-cfg; };
@@ -107,6 +108,9 @@ in {
       })
       |> lib.mergeAttrsList;
   };
+
+  # NOTE: required for ZFS
+  networking.hostId = "d8d17223";
 
   nix.settings = {
     trusted-users = [ "handz" ];
