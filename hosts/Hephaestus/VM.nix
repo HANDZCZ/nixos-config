@@ -40,6 +40,14 @@ in {
             };
         })
         |> lib.mergeAttrsList)
+      # Disable firewall on all vms (fixing firewall one by one would be tedious)
+      (lib.attrNames config.microvm.vms
+        |> lib.map (name: {
+          ${name}.config.config = {
+            networking.firewall.enable = false;
+          };
+        })
+        |> lib.mergeAttrsList)
     ];
 
     # no ipmi in a vm
