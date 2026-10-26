@@ -11,5 +11,8 @@
       PAPERLESS_DATE_PARSER_LANGUAGES = "cs+en-US";
       PAPERLESS_SOCIALACCOUNT_ALLOW_SIGNUPS = false;
     };
+    exporter = {
+      enable = true;
+    };
   };
 }
