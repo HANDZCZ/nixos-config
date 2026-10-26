@@ -188,15 +188,7 @@ rec {
       balloon = lib.mkDefault true;
       deflateOnOOM = true;
       storeDiskDirect = true;
-      shares = [
-        {
-          proto = "virtiofs";
-          tag = "journal";
-          source = "/var/lib/microvms/${host-info.vm-name}/journal";
-          mountPoint = "/var/log/journal";
-        }
-      ]
-      ++ lib.optional share-store {
+      shares = lib.optional share-store {
         proto = "virtiofs";
         tag = "ro-store";
         source = "/nix/store";
