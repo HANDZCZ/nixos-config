@@ -25,7 +25,7 @@ in {
         ];
 
         services.paperless.port = 80;
-        # Allow hydra to bind port 80
+        # Allow paperless to bind port 80
         systemd.services.paperless-web.serviceConfig = {
           AmbientCapabilities = [ "CAP_NET_BIND_SERVICE" ];
           CapabilityBoundingSet = [ "CAP_NET_BIND_SERVICE" ];
@@ -41,9 +41,9 @@ in {
           mem = 4096;
           volumes = [
             rec {
-              label = "postgresql-data";
+              label = "paperless-data";
               image = "${label}.img";
-              mountPoint = "/var/lib/postgresql";
+              mountPoint = "/var/lib";
               size = 16 * 1024;
               direct = true;
             }
@@ -51,9 +51,21 @@ in {
           shares = [
             rec {
               proto = "virtiofs";
-              tag = "paperless-data";
+              tag = "paperless-consume";
               source = "${vmDir}/${tag}";
-              mountPoint = config.services.paperless.dataDir;
+              mountPoint = config.services.paperless.consumptionDir;
+            }
+            rec {
+              proto = "virtiofs";
+              tag = "paperless-media";
+              source = "${vmDir}/${tag}";
+              mountPoint = config.services.paperless.mediaDir;
+            }
+            rec {
+              proto = "virtiofs";
+              tag = "paperless-export";
+              source = "${vmDir}/${tag}";
+              mountPoint = config.services.paperless.exporter.directory;
             }
           ];
         };
