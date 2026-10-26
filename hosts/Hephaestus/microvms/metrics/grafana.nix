@@ -1,9 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, the-cfg, host-info, ... }:
 
 {
   services.grafana = {
     enable = true;
-    openFirewall = true;
 
     settings = {
       server = {
@@ -42,4 +41,14 @@
       };
     };
   };
+
+  services.nginx.virtualHosts = the-cfg.vms.${host-info.hostName}.services.grafana.domains
+    |> lib.map (domain: {
+      ${domain} = {
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
+        };
+      };
+    })
+    |> lib.mergeAttrsList;
 }

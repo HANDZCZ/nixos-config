@@ -30,6 +30,14 @@ in {
           inherit (prometheus-cfg) scrapeConfigs;
         };
 
+        services.nginx = {
+          enable = true;
+          recommendedProxySettings = true;
+          recommendedOptimisation = true;
+        };
+
+        networking.firewall.allowedTCPPorts = [ 80 ];
+
         microvm = {
           vcpu = 4;
           mem = 4096;

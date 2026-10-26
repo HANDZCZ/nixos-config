@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, the-cfg, lib, host-info, ... }:
 
 {
   services.prometheus = {
@@ -19,7 +19,13 @@
     ];
   };
 
-  networking.firewall.allowedTCPPorts = [
-    config.services.prometheus.port
-  ];
+  services.nginx.virtualHosts = the-cfg.vms.${host-info.hostName}.services.prometheus.domains
+    |> lib.map (domain: {
+      ${domain} = {
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString config.services.prometheus.port}";
+        };
+      };
+    })
+    |> lib.mergeAttrsList;
 }
