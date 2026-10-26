@@ -51,7 +51,7 @@ in {
           enable = lib.mkEnableOption "a periodic timer for ddns-nsupdate";
           interval = lib.mkOption {
             type = lib.types.str;
-            default = "5m";
+            default = "1h";
             description = "How often to run the update (systemd timer syntax).";
           };
         };
