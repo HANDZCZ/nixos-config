@@ -99,14 +99,12 @@ in {
   networking.fqdn = the-cfg.hosts.${host-info.hostName}.fqdn;
   services.ddns-nsupdate = {
     enable = true;
-    domains = the-cfg.hosts.${host-info.hostName}.domains
-      |> lib.map (domain: {
-        ${domain} = {
-          server = the-cfg.dns.primary.ip;
-          key = config.sops.secrets."host/dns-tsig-key".path;
-        };
-      })
-      |> lib.mergeAttrsList;
+    domains = {
+      ${the-cfg.hosts.${host-info.hostName}.fqdn} = {
+        server = the-cfg.dns.primary.ip;
+        key = config.sops.secrets."host/dns-tsig-key".path;
+      };
+    };
   };
 
   # NOTE: required for ZFS
