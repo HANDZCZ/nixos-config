@@ -1,7 +1,17 @@
 { lib }:
 
-rec {
-  local-domain = "ce.handz.eu.org";
+let
+  domain = "handz.eu.org";
+  designation = "ce";
+  local-domain = "${designation}.${domain}";
+
+  mkMachineEntry = { name, ... }@args: {
+    ${name} = {
+      fqdn = "${lib.toLower name}.${designation}.machine";
+      services = {};
+    } // lib.removeAttrs args [ "name" ];
+  };
+in rec {
 
   dns = {
     primary = {
@@ -27,31 +37,32 @@ rec {
     ];
   };
 
-  hosts = {
-    Hephaestus = rec {
-      fqdn = "hephaestus.${local-domain}";
-      domains = [
-        fqdn
-      ];
+  hosts = {}
+    // mkMachineEntry {
+      name = "Hephaestus";
     };
-  };
 
-  vms = {
-    technitium = rec {
-      fqdn = lib.head domains;
-      domains = services.technitium.domains;
+  vms = {}
+    // mkMachineEntry {
+      name = "technitium";
+      services = {
+        inherit (services)
+          technitium;
+      };
+    }
+    // mkMachineEntry {
+      name = "paperless";
+      services = {
+        inherit (services)
+          paperless;
+      };
+    }
+    // mkMachineEntry {
+      name = "metrics";
+      services = {
+        inherit (services)
+          prometheus
+          grafana;
+      };
     };
-    paperless = rec {
-      fqdn = lib.head domains;
-      domains = services.paperless.domains;
-    };
-    metrics = rec {
-      fqdn = "metrics.${local-domain}";
-      domains = with services; [
-        fqdn
-      ]
-        ++ prometheus.domains
-        ++ grafana.domains;
-    };
-  };
 }
