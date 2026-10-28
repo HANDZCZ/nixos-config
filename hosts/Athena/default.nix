@@ -52,7 +52,7 @@ in {
     ../../modules/zramSwap.nix
     ../../modules/warn-open-ports.nix
     ../../modules/symmetric-networkd-dhcp-single-br.nix
-    ./pihole.nix
+    ./technitium.nix
     ./VM.nix
   ];
 
