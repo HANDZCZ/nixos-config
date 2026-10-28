@@ -3,6 +3,7 @@ final: prev: {
   inherit (final.pkgs-unstable)
     prometheus
     prometheus-node-exporter
+    prometheus-zfs-exporter
     grafana
     grafanaPlugins;
 }
