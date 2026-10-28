@@ -57,6 +57,16 @@ let
       ];
     }
     {
+      job_name = "host-zfs";
+      static_configs = [
+        {
+          targets = [
+            "${config.networking.fqdn}:${toString config.services.prometheus.exporters.zfs.port}"
+          ];
+        }
+      ];
+    }
+    {
       job_name = "microvms-node";
       static_configs = [
         {
