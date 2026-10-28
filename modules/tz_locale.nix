@@ -26,7 +26,10 @@
   };
 
   services.xserver = {
-    xkb.layout = "cz-winlike";
+    xkb = {
+      layout = "cz-winlike";
+      options = "terminate:ctrl_alt_bksp,caps:escape";
+    };
   };
 }
 
