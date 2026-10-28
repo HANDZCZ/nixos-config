@@ -21,7 +21,7 @@
         ];
         hosts = [];
         cnameRecords = [];
-        interface = "${networks.servers}";
+        interface = "${networks.servers.interface}";
       };
     };
   };
@@ -37,11 +37,11 @@
     # 53 - pihole dns
     # 8012 - pihole web
     # 8015 - dnscrypt-proxy webui
-    "${networks.servers}" = {
+    "${networks.servers.interface}" = {
       allowedTCPPorts = [ 53 8012 8015 ];
       allowedUDPPorts = [ 53 ];
     };
-    "${networks.lan}" = {
+    "${networks.lan.interface}" = {
       allowedTCPPorts = [ 8012 8015 ];
     };
   };

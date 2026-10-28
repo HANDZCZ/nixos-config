@@ -79,11 +79,11 @@ in {
   networking.firewall.interfaces = {
     # 22 - ssh
     # 9 - Wake on lan
-    "${networks.servers}" = {
+    "${networks.servers.interface}" = {
       allowedTCPPorts = [ 22 ];
       allowedUDPPorts = [ 9 ];
     };
-    "${networks.lan}" = {
+    "${networks.lan.interface}" = {
       allowedTCPPorts = [ 22 ];
     };
   };
