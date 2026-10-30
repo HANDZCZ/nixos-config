@@ -40,12 +40,16 @@ in {
         services.technitium-dns-server = {
           enable = true;
           openFirewall = true;
-          firewallTCPPorts = [ 53 80 ];
+          firewallTCPPorts = [ 53 80 443 ];
           firewallUDPPorts = [ 53 ];
         };
 
         systemd.services.technitium-dns-server.environment = {
           DNS_SERVER_WEB_SERVICE_HTTP_PORT = "80";
+          DNS_SERVER_WEB_SERVICE_ENABLE_HTTPS = "true";
+          DNS_SERVER_WEB_SERVICE_HTTPS_PORT = "443";
+          DNS_SERVER_WEB_SERVICE_USE_SELF_SIGNED_CERT = "true";
+          DNS_SERVER_WEB_SERVICE_HTTP_TO_TLS_REDIRECT = "true";
           DNS_SERVER_FORWARDERS = "127.0.0.1:1053";
           DNS_SERVER_FORWARDER_PROTOCOL = "udp";
           DNS_SERVER_LOG_USING_LOCAL_TIME = "false";
