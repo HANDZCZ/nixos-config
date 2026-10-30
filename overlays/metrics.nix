@@ -4,6 +4,7 @@ final: prev: {
     prometheus
     prometheus-node-exporter
     prometheus-zfs-exporter
+    prometheus-smartctl-exporter
     grafana
     grafanaPlugins;
 }
