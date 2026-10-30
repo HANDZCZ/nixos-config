@@ -47,20 +47,11 @@ let
 
   prometheus-cfg.scrapeConfigs = [
     {
-      job_name = "host-node";
+      job_name = "${config.networking.hostName}";
       static_configs = [
         {
           targets = [
             "${config.networking.fqdn}:${toString config.services.prometheus.exporters.node.port}"
-          ];
-        }
-      ];
-    }
-    {
-      job_name = "host-zfs";
-      static_configs = [
-        {
-          targets = [
             "${config.networking.fqdn}:${toString config.services.prometheus.exporters.zfs.port}"
           ];
         }
