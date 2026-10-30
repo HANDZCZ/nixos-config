@@ -53,6 +53,7 @@ let
           targets = [
             "${config.networking.fqdn}:${toString config.services.prometheus.exporters.node.port}"
             "${config.networking.fqdn}:${toString config.services.prometheus.exporters.zfs.port}"
+            "${config.networking.fqdn}:${toString config.services.prometheus.exporters.smartctl.port}"
           ];
         }
       ];
