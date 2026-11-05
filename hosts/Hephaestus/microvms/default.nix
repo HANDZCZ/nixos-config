@@ -28,9 +28,11 @@ let
         config
         # Add default prometheus node exporter to all microvms
         ../../../modules/microvm/node-exporter.nix
-        # Add ddns to all microvms
         ../../../modules/microvm/ddns.nix
       ];
+
+      # Add FQDN domain to ddns for all microvms
+      vm.ddns-nsupdate.add-fqdn = true;
 
       _module.args = {
         inherit
