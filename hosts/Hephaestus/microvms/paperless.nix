@@ -45,7 +45,6 @@ in {
               image = "${label}.img";
               mountPoint = "/var/lib";
               size = 16 * 1024;
-              direct = true;
             }
           ];
           shares = [

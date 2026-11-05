@@ -64,7 +64,6 @@ in {
               image = "${label}.img";
               mountPoint = "/var/lib/private/technitium-dns-server";
               size = 5 * 1024;
-              direct = true;
             }
           ];
         };

@@ -187,7 +187,6 @@ rec {
       hotpluggedMem = lib.mkDefault 0;
       balloon = lib.mkDefault true;
       deflateOnOOM = true;
-      storeDiskDirect = true;
       shares = lib.optional share-store {
         proto = "virtiofs";
         tag = "ro-store";

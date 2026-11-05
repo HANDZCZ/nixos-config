@@ -47,7 +47,6 @@ in {
               image = "${label}.img";
               mountPoint = "/var/lib";
               size = 32 * 1024;
-              direct = true;
             }
           ];
         };
