@@ -49,7 +49,6 @@
         consoleJanitor.enable = true;
         copyEmojiMarkdown.enable = true;
         copyFileContents.enable = true;
-        copyStickerLinks.enable = true;
         crashHandler = {
           enable = true;
           attemptToPreventCrashes = true;
@@ -57,7 +56,7 @@
         };
         disableCallIdle.enable = true;
         decor.enable = true;
-        expressionCloner.enable = true;
+        expressionManager.enable = true;
         fakeNitro.enable = true;
         fakeProfileThemes.enable = true;
         fixImagesQuality.enable = true;
@@ -124,7 +123,6 @@
         serverListIndicators = {
           enable = true;
           mode = 3;
-          useCompact = true;
         };
         shikiCodeblocks = {
           enable = true;
