@@ -138,6 +138,10 @@
     in {
       nixos-desktop = mkHostConfig { folder = "desktop"; };
       nixos-laptop = mkHostConfig { folder = "laptop"; };
+      Behemoth = mkHostConfig {
+        folder = "Behemoth";
+        host-info.hostName = "Behemoth";
+      };
 
       # ------ SERVERS ------
       Athena = mkHostConfig {

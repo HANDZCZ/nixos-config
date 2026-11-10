@@ -94,6 +94,19 @@ let
       }
     ];
 
+    Behemoth = [
+      ./bash.nix
+      ./btop.nix
+      ./starship.nix
+      ./ssh.nix
+      ./git.nix
+      ./lazygit.nix
+      ./scripts
+      ./nixvim
+      ./ranger.nix
+      ./autostart.nix
+      ./fonts.nix
+    ];
 
     # ------ SERVERS ------
 
