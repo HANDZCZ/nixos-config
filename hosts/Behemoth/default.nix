@@ -14,6 +14,9 @@
     useWindowsDriver = true;
   };
 
+  # Set back to default
+  security.sudo.wheelNeedsPassword = true;
+
   # NOTE: Needed for Home Manager, otherwise you get a dbus error
   programs.dconf.enable = true;
 

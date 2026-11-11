@@ -1,8 +1,8 @@
-{ ... }:
+{ lib, ... }:
 
 {
   boot.loader.grub = {
-    enable = true;
+    enable = lib.mkDefault true;
     device = "nodev";
     efiSupport = true;
     useOSProber = false;
