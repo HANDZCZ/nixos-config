@@ -9,6 +9,10 @@ in {
     nix-tools-steam-pkgs.samrewritten
   ];
 
+  systemd.tmpfiles.rules = [
+    "L+ /run/SLSsteam/tools/steamnetsock-patch.so - - - - ${nix-tools-steam-pkgs.steamnetsock-patch.passthru.LD_AUDIT}"
+  ];
+
   programs = {
     steam = {
       enable = true;
