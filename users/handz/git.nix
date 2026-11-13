@@ -37,6 +37,7 @@ in {
           conflictStyle = "diff3";
           ff = false;
         };
+        pull.ff = "only";
       };
       signing = {
         format = "ssh";
