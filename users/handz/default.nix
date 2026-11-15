@@ -107,6 +107,15 @@ let
       ./autostart.nix
       ./fonts.nix
       ./sofka.nix
+      {
+        home-manager.users.${user-info.name} = {
+          home.packages = with pkgs; [
+            openshift
+            kubectl
+            kubectx
+          ];
+        };
+      }
     ];
 
     # ------ SERVERS ------
