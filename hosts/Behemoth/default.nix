@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, lib, pkgs, ... }:
 
 {
   imports = [
@@ -12,6 +12,13 @@
     defaultUser = "handz";
     ssh-agent.enable = false;
     useWindowsDriver = true;
+
+  # Fixes warp not working
+  networking.nftables.enable = true;
+  systemd.services.cloudflare-warp = {
+    serviceConfig = {
+      BindReadOnlyPaths = [ "${lib.getExe pkgs.nftables}:/usr/sbin/nft" ];
+    };
   };
 
   # Set back to default
