@@ -12,6 +12,8 @@
     defaultUser = "handz";
     ssh-agent.enable = false;
     useWindowsDriver = true;
+    startMenuLaunchers = true;
+  };
 
   # Fixes warp not working
   networking.nftables.enable = true;
