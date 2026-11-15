@@ -106,6 +106,7 @@ let
       ./ranger.nix
       ./autostart.nix
       ./fonts.nix
+      ./sofka.nix
     ];
 
     # ------ SERVERS ------
