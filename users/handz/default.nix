@@ -106,6 +106,7 @@ let
       ./ranger.nix
       ./autostart.nix
       ./fonts.nix
+      ../../modules/cloudflare-warp.nix
       ./sofka.nix
       {
         home-manager.users.${user-info.name} = {
