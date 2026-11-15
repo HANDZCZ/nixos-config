@@ -114,6 +114,14 @@
         flake-compat.follows = "";
       };
     };
+
+    sofka = {
+      url = "github:nklmilojevic/sofka";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
   };
 
   nixConfig = {
@@ -121,11 +129,13 @@
       "https://nix-community.cachix.org"
       #"https://attic.xuyh0120.win/lantian" # nix-cachyos-kernel
       "https://nix-gaming.cachix.org"
+      "https://nkl-sofka.cachix.org"
     ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       #"lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" # nix-cachyos-kernel
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+      "nkl-sofka.cachix.org-1:hLg9frFNJynrxe7SSBb/p6pbawlpZmG10bw+wLsTufw="
     ];
   };
 

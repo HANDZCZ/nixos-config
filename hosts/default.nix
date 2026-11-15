@@ -57,6 +57,7 @@ rec {
           inputs.noctalia.homeModules.default
           inputs.nixvim.homeModules.nixvim
           inputs.nixcord.homeModules.nixcord
+          inputs.sofka.homeManagerModules.default
         ];
         extraSpecialArgs = {
           inherit inputs pkgs-unstable host-info;
