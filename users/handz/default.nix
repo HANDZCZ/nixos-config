@@ -108,6 +108,7 @@ let
       ./fonts.nix
       ../../modules/cloudflare-warp.nix
       ./sofka.nix
+      ./containerization.nix
       {
         home-manager.users.${user-info.name} = {
           home.packages = with pkgs; [
