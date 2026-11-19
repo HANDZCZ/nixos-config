@@ -109,6 +109,7 @@ let
       ../../modules/cloudflare-warp.nix
       ./sofka.nix
       ./containerization.nix
+      ./akcenta
       {
         home-manager.users.${user-info.name} = {
           home.packages = with pkgs; [
