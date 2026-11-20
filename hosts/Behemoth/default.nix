@@ -5,6 +5,7 @@
     inputs.nixos-wsl.nixosModules.default
     ../../users/handz
     ./VM.nix
+    ./certs
   ];
 
   wsl = {
