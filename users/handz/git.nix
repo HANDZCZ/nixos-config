@@ -1,4 +1,4 @@
-{ user-info, ... }:
+{ user-info, lib, ... }:
 
 let
   includes' = [
@@ -77,6 +77,12 @@ in {
           identityFile = [ "~/.ssh/git/id_ed25519_ssh.suyu.dev" ];
         };
       };
+    };
+
+
+    programs.mergiraf = {
+      enable = true;
+      enableGitIntegration = lib.mkDefault true;
     };
   };
 }
