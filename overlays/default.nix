@@ -1,3 +1,3 @@
-lib:
+inputs:
   removeAttrs (builtins.readDir ./.) [ "default.nix" ]
-  |> lib.mapAttrsToList (name: _: import ./${name})
+  |> inputs.nixpkgs.lib.mapAttrsToList (name: _: import ./${name} inputs)

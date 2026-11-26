@@ -1,5 +1,5 @@
 # Use unstable packages for metrics
-final: prev: {
+inputs: final: prev: {
   inherit (final.pkgs-unstable)
     prometheus
     prometheus-node-exporter

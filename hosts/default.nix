@@ -9,7 +9,7 @@ rec {
     nix-gaming.overlays.default
     nix-vscode-extensions.overlays.default
     (final: prev: import ../packages prev)
-  ] ++ (import ../overlays inputs.nixpkgs.lib);
+  ] ++ (import ../overlays inputs);
 
   default_modules = [
     ../keymaps

@@ -1,5 +1,5 @@
 # Use unstable package, with beta version that supports TLS inspection
-final: prev: let
+inputs: final: prev: let
   version = "2026.9.2663.1";
 
   unstable-pkg = final.pkgs-unstable.cloudflare-warp;
