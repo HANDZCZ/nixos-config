@@ -26,6 +26,7 @@ let
       ./obs.nix
       ./xterm.nix
       ./browser.nix
+      ./atuin.nix
       {
         home-manager.users.${user-info.name} = {
           home.packages = with pkgs; [
@@ -111,6 +112,7 @@ let
       ./sofka.nix
       ./containerization.nix
       ./akcenta
+      ./atuin.nix
     ];
 
     # ------ SERVERS ------
@@ -123,6 +125,7 @@ let
       ./lazygit.nix
       ./nixvim
       ./ranger.nix
+      ./atuin.nix
     ];
 
     Athena = _shared_servers;

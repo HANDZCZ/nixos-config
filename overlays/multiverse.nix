@@ -1,5 +1,6 @@
 inputs: final: prev: let
   pins = {
+    atuin = "18.24.8";
   };
 in
   inputs.multiverse.lib.pinOverlay {
