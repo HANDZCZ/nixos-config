@@ -139,6 +139,21 @@
         "type": "github"
       }
     },
+    "multiverse": {
+      "locked": {
+        "lastModified": 1795624153,
+        "narHash": "sha256-lLXuXL4Us1X26gOSCV5S4dKT7KXsbzEVrNv0VNFrrIE=",
+        "owner": "fzakaria",
+        "repo": "nixpkgs-multiverse",
+        "rev": "aef007415062953fe09eb989570186c3f9c2d8b5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fzakaria",
+        "repo": "nixpkgs-multiverse",
+        "type": "github"
+      }
+    },
     "niri-nix": {
       "inputs": {
         "niri-unstable": [],
@@ -434,6 +449,7 @@
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "microvm": "microvm",
+        "multiverse": "multiverse",
         "niri-nix": "niri-nix",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nix-gaming": "nix-gaming",

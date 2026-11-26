@@ -27,6 +27,7 @@ rec {
         inputs.nix-tools-steam.nixosModules.hv-bypass
         inputs.sops-nix.nixosModules.sops
         inputs.nixos-wsl.nixosModules.default
+        inputs.multiverse.nixosModules.default
       ];
 
       networking.hostName = host-info.hostName;
@@ -58,6 +59,7 @@ rec {
           inputs.nixvim.homeModules.nixvim
           inputs.nixcord.homeModules.nixcord
           inputs.sofka.homeManagerModules.default
+          inputs.multiverse.homeManagerModules.default
         ];
         extraSpecialArgs = {
           inherit inputs pkgs-unstable host-info;

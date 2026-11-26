@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    multiverse.url = "github:fzakaria/nixpkgs-multiverse";
 
     flake-compat.url = "github:NixOS/flake-compat";
     flake-parts = {
