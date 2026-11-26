@@ -107,18 +107,10 @@ let
       ./autostart.nix
       ./fonts.nix
       ../../modules/cloudflare-warp.nix
+      ./browser.nix
       ./sofka.nix
       ./containerization.nix
       ./akcenta
-      {
-        home-manager.users.${user-info.name} = {
-          home.packages = with pkgs; [
-            openshift
-            kubectl
-            kubectx
-          ];
-        };
-      }
     ];
 
     # ------ SERVERS ------
